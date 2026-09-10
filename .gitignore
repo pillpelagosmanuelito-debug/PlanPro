@@ -1,0 +1,32 @@
+# Flutter / Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+
+# La carpeta android/ se regenera con tool/prepare_android.sh: son cientos de
+# archivos deterministas que solo ensucian los diffs. Lo unico propio del
+# proyecto (applicationId, nombre, icono) lo vuelve a aplicar ese script.
+android/
+ios/
+web/
+linux/
+macos/
+windows/
+
+# Iconos generados por codigo desde tool/generate_icon.py
+android_icons/
+
+# Editores
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# Sistema
+.DS_Store
+Thumbs.db

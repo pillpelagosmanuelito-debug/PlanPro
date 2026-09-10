@@ -1,0 +1,17 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  errors:
+    # Se conservan APIs obsoletas para mantener compatibilidad con versiones
+    # anteriores del canal estable de Flutter.
+    deprecated_member_use: ignore
+    # Utiles en desarrollo, no deben romper la integracion continua.
+    unused_import: info
+    unused_local_variable: info
+    unused_element: info
+    unused_field: info
+
+linter:
+  rules:
+    avoid_print: true
+    prefer_final_locals: true
