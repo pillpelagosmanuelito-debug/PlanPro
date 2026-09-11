@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_theme.dart';
 import '../../core/formatters.dart';
-import '../../data/models/project_case.dart';
 import '../../data/models/project_state.dart';
 import '../../data/models/team_member.dart';
 import '../../data/models/work_package.dart';

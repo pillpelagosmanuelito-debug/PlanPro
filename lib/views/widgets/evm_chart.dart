@@ -38,7 +38,7 @@ class EvmChart extends StatelessWidget {
           child: CustomPaint(painter: _EvmPainter(snapshots)),
         ),
         const SizedBox(height: 10),
-        Wrap(
+        const Wrap(
           spacing: 14,
           runSpacing: 6,
           children: const <Widget>[

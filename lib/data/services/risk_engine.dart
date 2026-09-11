@@ -56,8 +56,9 @@ class RiskEngine {
       if (risk.effectiveProbability <= 0) continue;
 
       final int windowLength = math.max(1, risk.window.length);
-      final double perPeriod =
-          1 - math.pow(1 - risk.effectiveProbability, 1 / windowLength);
+      final double perPeriod = 1 -
+          math.pow(1 - risk.effectiveProbability, 1 / windowLength)
+              .toDouble();
       if (perPeriod <= 0) continue;
       if (random.nextDouble() > perPeriod) continue;
 

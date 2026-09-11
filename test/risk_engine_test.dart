@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:project_management_simulator/data/models/methodology.dart';
-import 'package:project_management_simulator/data/models/project_case.dart';
 import 'package:project_management_simulator/data/models/project_state.dart';
 import 'package:project_management_simulator/data/models/risk_item.dart';
 import 'package:project_management_simulator/data/repositories/project_repository.dart';

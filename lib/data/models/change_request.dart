@@ -45,6 +45,22 @@ enum ChangeDecision {
         (ChangeDecision d) => d.name == name,
         orElse: () => ChangeDecision.pending,
       );
+
+  /// Efecto sobre la satisfaccion del patrocinador si se toma esta decision.
+  double satisfactionDelta() {
+    switch (this) {
+      case ChangeDecision.pending:
+        return 0;
+      case ChangeDecision.acceptedWithoutBaseline:
+        return 4;
+      case ChangeDecision.acceptedWithBaseline:
+        return 1;
+      case ChangeDecision.tradedOff:
+        return -2;
+      case ChangeDecision.rejected:
+        return -8;
+    }
+  }
 }
 
 /// Solicitud de cambio de alcance durante la ejecucion.
@@ -84,20 +100,7 @@ class ChangeRequest {
   bool get isPending => decision == ChangeDecision.pending;
 
   /// Efecto sobre la satisfaccion del patrocinador.
-  double satisfactionDelta() {
-    switch (decision) {
-      case ChangeDecision.pending:
-        return 0;
-      case ChangeDecision.acceptedWithoutBaseline:
-        return 4;
-      case ChangeDecision.acceptedWithBaseline:
-        return 1;
-      case ChangeDecision.tradedOff:
-        return -2;
-      case ChangeDecision.rejected:
-        return -8;
-    }
-  }
+  double satisfactionDelta() => decision.satisfactionDelta();
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
