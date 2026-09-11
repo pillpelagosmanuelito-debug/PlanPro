@@ -41,7 +41,7 @@ class EvmChart extends StatelessWidget {
         const Wrap(
           spacing: 14,
           runSpacing: 6,
-          children: const <Widget>[
+          children: <Widget>[
             _Legend(color: AppColors.info, label: 'Valor planificado (PV)'),
             _Legend(color: AppColors.success, label: 'Valor ganado (EV)'),
             _Legend(color: AppColors.danger, label: 'Costo real (AC)'),
