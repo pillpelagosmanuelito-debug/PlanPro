@@ -54,7 +54,8 @@ trap restore EXIT
 
 # --- Generacion de la plataforma -------------------------------------------
 echo "==> Generando android/ ..."
-flutter create --platforms=android --org "pe.edu.simulador" --overwrite . >/dev/null
+flutter create --platforms=android --org "pe.edu.simulador" \
+  --project-name project_management_simulator --overwrite . >/dev/null
 
 echo "==> Restaurando fuentes del proyecto ..."
 restore
