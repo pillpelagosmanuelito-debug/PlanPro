@@ -7,8 +7,8 @@ class ProjectConfig {
     this.totalPeriods = 12,
     this.weeksPerPeriod = 2,
     this.hoursPerPerson = 80,
-    this.communicationOverhead = 0.040,
-    this.communicationOverheadSquared = 0.010,
+    this.communicationOverhead = 0.007,
+    this.communicationOverheadSquared = 0.018,
     this.mentoringPenaltyPerNewcomer = 0.14,
     this.maxMentoringNewcomers = 3,
     this.qaCapacityCost = 0.14,
@@ -24,7 +24,7 @@ class ProjectConfig {
     this.overtimeCostFactor = 1.6,
     this.overtimeFatigue = 0.12,
     this.fatigueRecovery = 0.06,
-    this.estimationBias = 1.10,
+    this.estimationBias = 1.11,
     this.estimationSpread = 0.20,
     this.contingencyMax = 0.20,
     this.escalationSatisfactionCost = 12.0,
@@ -107,8 +107,10 @@ class ProjectConfig {
   /// Eficiencia del equipo segun su tamanio.
   ///
   /// Un equipo de cinco conserva cerca del 76% de su capacidad nominal; uno de
-  /// nueve, apenas la mitad. Por eso duplicar el equipo no duplica la
-  /// velocidad, y a partir de cierto punto solo duplica la planilla.
+  /// nueve, apenas el 45%. La caida se acelera con el tamanio porque los
+  /// canales de comunicacion crecen con el cuadrado del equipo, no en linea
+  /// recta. Por eso duplicar el equipo no duplica la velocidad, y a partir de
+  /// cierto punto solo duplica la planilla.
   double teamEfficiency(int size) {
     final int k = (size - 1).clamp(0, 99);
     return 1 /

@@ -113,7 +113,7 @@ comentarios que explican qué modela cada uno. Ajustes útiles:
 | Objetivo | Qué cambiar |
 |---|---|
 | Partida más corta | `totalPeriods` de 12 a 9 |
-| Más margen para principiantes | Bajar `estimationBias` de 1.10 a 1.05 |
+| Más margen para principiantes | Bajar `estimationBias` de 1.11 a 1.05 |
 | Hacer más visible la ley de Brooks | Subir `communicationOverheadSquared` |
 | Hacer la calidad más decisiva | Subir `lateFixMultiplier` |
 | Menos aleatoriedad | Bajar `estimationSpread` de 0.20 a 0.12 |

@@ -6,6 +6,7 @@ import 'package:project_management_simulator/main.dart';
 import 'package:project_management_simulator/views/widgets/advisor_card.dart';
 import 'package:project_management_simulator/views/widgets/evm_chart.dart';
 import 'package:project_management_simulator/views/widgets/metric_tile.dart';
+import 'package:project_management_simulator/views/screens/guide_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -43,11 +44,29 @@ void main() {
     await tester.pumpWidget(const ProjectManagementSimulatorApp());
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text('Guia de metodologias e indicadores'));
+    final Finder guideButton = find.text('Guia de metodologias e indicadores');
+    await tester.dragUntilVisible(
+      guideButton,
+      find.byType(ListView),
+      const Offset(0, -300),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(guideButton);
     await tester.pumpAndSettle();
 
     expect(find.text('Guia de referencia'), findsOneWidget);
-    expect(find.textContaining('SPI = EV / PV'), findsOneWidget);
+
+    final Finder spiText = find.textContaining('SPI = EV / PV');
+    await tester.dragUntilVisible(
+      spiText,
+      find.descendant(
+        of: find.byType(GuideScreen),
+        matching: find.byType(ListView),
+      ),
+      const Offset(0, -300),
+    );
+    expect(spiText, findsOneWidget);
   });
 
   testWidgets('el indicador acepta valores no finitos sin romperse', (

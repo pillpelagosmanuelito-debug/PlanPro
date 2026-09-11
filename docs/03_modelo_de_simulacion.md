@@ -15,7 +15,7 @@ El estudiante ve la **estimación del equipo**. La duración real permanece
 oculta y se descubre trabajando.
 
 ```
-factor  = lognormal(mediana = 1.10, σ = 0.20)
+factor  = lognormal(mediana = 1.11, σ = 0.20)
 ajuste  = 1 + (factor − 1) × complejidad
 real    = estimado × ajuste × (1 + retrabajo × 0.60)
 ```
@@ -26,9 +26,9 @@ arriba (siempre puede aparecer algo). La lognormal captura esa asimetría, que
 es la razón por la que los proyectos se atrasan mucho más a menudo de lo que
 se adelantan.
 
-**Por qué mediana 1.10 y no 1.0.** El sesgo de optimismo en estimación está
+**Por qué mediana 1.11 y no 1.0.** El sesgo de optimismo en estimación está
 extensamente documentado. Ponerlo en 1.0 enseñaría que estimar bien es
-cuestión de suerte; ponerlo en 1.10 enseña que hay que planificar contando con
+cuestión de suerte; ponerlo en 1.11 enseña que hay que planificar contando con
 él.
 
 **Por qué la complejidad amplifica la desviación y no el trabajo base.** Un
