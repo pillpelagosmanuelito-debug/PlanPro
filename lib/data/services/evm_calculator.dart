@@ -8,13 +8,13 @@ import '../models/work_package.dart';
 
 /// Calcula el valor ganado del proyecto.
 ///
-/// Se mantiene aparte del motor de ejecucion porque es el instrumental de
-/// medicion, no de simulacion: recibe el estado y devuelve indicadores, sin
+/// Se mantiene aparte del motor de ejecución porque es el instrumental de
+/// medición, no de simulación: recibe el estado y devuelve indicadores, sin
 /// modificar nada.
 class EvmCalculator {
   const EvmCalculator();
 
-  /// Valor planificado a la fecha, con distribucion lineal sobre la linea base.
+  /// Valor planificado a la fecha, con distribución lineal sobre la línea base.
   double plannedValue({
     required Baseline baseline,
     required int period,
@@ -25,7 +25,7 @@ class EvmCalculator {
     return baseline.budgetAtCompletion * fraction;
   }
 
-  /// Valor ganado: la fraccion del alcance realmente terminada, valorizada.
+  /// Valor ganado: la fracción del alcance realmente terminada, valorizada.
   double earnedValue({
     required ProjectState state,
     required Baseline baseline,
@@ -33,7 +33,7 @@ class EvmCalculator {
     return baseline.budgetAtCompletion * state.progress;
   }
 
-  /// Fotografia completa del periodo.
+  /// Fotografía completa del periodo.
   EvmSnapshot snapshot({
     required ProjectState state,
     required int period,
@@ -59,8 +59,8 @@ class EvmCalculator {
 
   /// Periodos estimados hasta terminar, con el ritmo observado.
   ///
-  /// Es la traduccion practica del SPI: si vienes rindiendo al 80% de lo
-  /// planificado, lo que falta tomara mas periodos de los que quedan.
+  /// Es la traducción práctica del SPI: si vienes rindiendo al 80% de lo
+  /// planificado, lo que falta tomará más periodos de los que quedan.
   double estimatedPeriodsToFinish({
     required ProjectState state,
     required int currentPeriod,
@@ -75,7 +75,7 @@ class EvmCalculator {
     return (1 - progress) / ratePerPeriod;
   }
 
-  /// Fecha estimada de termino en periodos absolutos.
+  /// Fecha estimada de término en periodos absolutos.
   double estimatedFinishPeriod({
     required ProjectState state,
     required int currentPeriod,
@@ -86,10 +86,10 @@ class EvmCalculator {
     return currentPeriod - 1 + remaining;
   }
 
-  /// Holgura de un paquete respecto de la fase mas cargada.
+  /// Holgura de un paquete respecto de la fase más cargada.
   ///
-  /// La fase con mas trabajo pendiente marca el ritmo del proyecto: los
-  /// paquetes que estan fuera de ella tienen holgura y pueden esperar.
+  /// La fase con más trabajo pendiente marca el ritmo del proyecto: los
+  /// paquetes que están fuera de ella tienen holgura y pueden esperar.
   double slackFor({
     required ProjectState state,
     required String packageId,
@@ -106,7 +106,7 @@ class EvmCalculator {
     return ((worst - own) / worst).clamp(0.0, 1.0).toDouble();
   }
 
-  /// Fase con mas trabajo pendiente: la que define el camino critico.
+  /// Fase con más trabajo pendiente: la que define el camino crítico.
   ProjectPhase criticalPhase(ProjectState state) {
     ProjectPhase worst = ProjectPhase.analysis;
     double most = -1;

@@ -1,4 +1,4 @@
-/// Categoria del riesgo, segun las fuentes tipicas de un proyecto.
+/// Categoría del riesgo, según las fuentes típicas de un proyecto.
 enum RiskCategory {
   technical,
   external,
@@ -8,13 +8,13 @@ enum RiskCategory {
   String get label {
     switch (this) {
       case RiskCategory.technical:
-        return 'Tecnico';
+        return 'Técnico';
       case RiskCategory.external:
         return 'Externo';
       case RiskCategory.organizational:
         return 'Organizacional';
       case RiskCategory.management:
-        return 'De direccion';
+        return 'De dirección';
     }
   }
 
@@ -54,7 +54,7 @@ enum RiskResponse {
       case RiskResponse.mitigate:
         return 'Reduce la probabilidad de que ocurra, con costo por adelantado.';
       case RiskResponse.transfer:
-        return 'Traslada el impacto a un tercero (garantia, seguro, contrato).';
+        return 'Traslada el impacto a un tercero (garantía, seguro, contrato).';
       case RiskResponse.accept:
         return 'Se asume de forma consciente y se cubre con reserva.';
       case RiskResponse.avoid:
@@ -105,7 +105,7 @@ class RiskItem {
   final double mitigationCost;
   final double transferCost;
 
-  /// Senial temprana que el equipo podria notar.
+  /// Señal temprana que el equipo podría notar.
   final String trigger;
 
   /// Periodos en los que puede materializarse.
@@ -119,7 +119,7 @@ class RiskItem {
   bool occurred;
   int occurredPeriod;
 
-  /// Probabilidad efectiva segun la respuesta elegida.
+  /// Probabilidad efectiva según la respuesta elegida.
   double get effectiveProbability {
     switch (response) {
       case RiskResponse.mitigate:
@@ -133,7 +133,7 @@ class RiskItem {
     }
   }
 
-  /// Impacto efectivo en horas segun la respuesta.
+  /// Impacto efectivo en horas según la respuesta.
   double get effectiveImpactHours {
     switch (response) {
       case RiskResponse.transfer:
@@ -148,7 +148,7 @@ class RiskItem {
     }
   }
 
-  /// Impacto efectivo en costo segun la respuesta.
+  /// Impacto efectivo en costo según la respuesta.
   double get effectiveImpactCost {
     switch (response) {
       case RiskResponse.transfer:
@@ -177,7 +177,7 @@ class RiskItem {
     }
   }
 
-  /// Exposicion esperada: probabilidad por impacto monetizado.
+  /// Exposición esperada: probabilidad por impacto monetizado.
   double exposure(double hourValue) =>
       effectiveProbability *
       (effectiveImpactCost + effectiveImpactHours * hourValue);
@@ -194,24 +194,24 @@ class RiskItem {
   static const List<Map<String, Object>> catalog = <Map<String, Object>>[
     <String, Object>{
       'id': 'key_person',
-      'name': 'Perdida del especialista clave',
+      'name': 'Pérdida del especialista clave',
       'description':
           'El integrante con mayor conocimiento del dominio renuncia o es '
-          'asignado a otra emergencia de la organizacion.',
+          'asignado a otra emergencia de la organización.',
       'category': 'organizational',
       'probability': 0.35,
       'impactHours': 135.0,
       'impactCost': 12000.0,
       'mitigationCost': 9000.0,
       'transferCost': 14000.0,
-      'trigger': 'Una sola persona concentra el conocimiento de un modulo.',
+      'trigger': 'Una sola persona concentra el conocimiento de un módulo.',
       'window': <int>[4, 5, 6, 7, 8],
     },
     <String, Object>{
       'id': 'scope_pressure',
-      'name': 'Presion de alcance del patrocinador',
+      'name': 'Presión de alcance del patrocinador',
       'description':
-          'Un area influyente exige incorporar funcionalidad que no estaba '
+          'Un área influyente exige incorporar funcionalidad que no estaba '
           'en el acta, con la fecha original intacta.',
       'category': 'management',
       'probability': 0.50,
@@ -219,22 +219,22 @@ class RiskItem {
       'impactCost': 6000.0,
       'mitigationCost': 7000.0,
       'transferCost': 10000.0,
-      'trigger': 'Reuniones donde aparecen "pequenios ajustes" no documentados.',
+      'trigger': 'Reuniones donde aparecen "pequeños ajustes" no documentados.',
       'window': <int>[3, 4, 5, 6, 7, 8, 9],
     },
     <String, Object>{
       'id': 'integration',
-      'name': 'Integracion con sistema heredado',
+      'name': 'Integración con sistema heredado',
       'description':
           'El sistema antiguo responde distinto a lo documentado y obliga a '
-          'rehacer la interfaz de integracion.',
+          'rehacer la interfaz de integración.',
       'category': 'technical',
       'probability': 0.45,
       'impactHours': 155.0,
       'impactCost': 8000.0,
       'mitigationCost': 11000.0,
       'transferCost': 16000.0,
-      'trigger': 'Nadie en la organizacion mantiene ese sistema hace anios.',
+      'trigger': 'Nadie en la organización mantiene ese sistema hace años.',
       'window': <int>[5, 6, 7, 8, 9],
     },
     <String, Object>{
@@ -242,29 +242,29 @@ class RiskItem {
       'name': 'Retraso del proveedor',
       'description':
           'El proveedor incumple la fecha de entrega de equipos o licencias '
-          'criticas para avanzar.',
+          'críticas para avanzar.',
       'category': 'external',
       'probability': 0.40,
       'impactHours': 100.0,
       'impactCost': 15000.0,
       'mitigationCost': 8000.0,
       'transferCost': 12000.0,
-      'trigger': 'La orden de compra sigue sin confirmacion escrita.',
+      'trigger': 'La orden de compra sigue sin confirmación escrita.',
       'window': <int>[4, 5, 6, 7],
     },
     <String, Object>{
       'id': 'infra_outage',
-      'name': 'Caida de la infraestructura de pruebas',
+      'name': 'Caída de la infraestructura de pruebas',
       'description':
-          'El ambiente de pruebas queda inoperativo y detiene la validacion '
-          'durante dias.',
+          'El ambiente de pruebas queda inoperativo y detiene la validación '
+          'durante días.',
       'category': 'technical',
       'probability': 0.30,
       'impactHours': 75.0,
       'impactCost': 5000.0,
       'mitigationCost': 5000.0,
       'transferCost': 9000.0,
-      'trigger': 'El ambiente comparte servidores con produccion.',
+      'trigger': 'El ambiente comparte servidores con producción.',
       'window': <int>[7, 8, 9, 10],
     },
     <String, Object>{
@@ -279,12 +279,12 @@ class RiskItem {
       'impactCost': 10000.0,
       'mitigationCost': 8000.0,
       'transferCost': 13000.0,
-      'trigger': 'El tramite depende de una entidad con plazos propios.',
+      'trigger': 'El trámite depende de una entidad con plazos propios.',
       'window': <int>[3, 4, 5, 6],
     },
     <String, Object>{
       'id': 'weather',
-      'name': 'Condiciones climaticas adversas',
+      'name': 'Condiciones climáticas adversas',
       'description':
           'Lluvias fuera de temporada detienen los trabajos de campo.',
       'category': 'external',
@@ -298,17 +298,17 @@ class RiskItem {
     },
     <String, Object>{
       'id': 'quality_audit',
-      'name': 'Observaciones de la supervision',
+      'name': 'Observaciones de la supervisión',
       'description':
-          'La supervision detecta incumplimientos y exige rehacer parte de '
-          'lo ejecutado con documentacion completa.',
+          'La supervisión detecta incumplimientos y exige rehacer parte de '
+          'lo ejecutado con documentación completa.',
       'category': 'management',
       'probability': 0.40,
       'impactHours': 135.0,
       'impactCost': 9000.0,
       'mitigationCost': 9000.0,
       'transferCost': 12000.0,
-      'trigger': 'Los entregables avanzan sin revision formal.',
+      'trigger': 'Los entregables avanzan sin revisión formal.',
       'window': <int>[8, 9, 10, 11],
     },
     <String, Object>{
@@ -323,7 +323,7 @@ class RiskItem {
       'impactCost': 8000.0,
       'mitigationCost': 10000.0,
       'transferCost': 15000.0,
-      'trigger': 'La normativa esta en revision desde antes del proyecto.',
+      'trigger': 'La normativa está en revisión desde antes del proyecto.',
       'window': <int>[5, 6, 7, 8, 9],
     },
   ];

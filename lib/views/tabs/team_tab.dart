@@ -9,11 +9,11 @@ import '../../viewmodels/project_viewmodel.dart';
 import '../app_scope.dart';
 import '../widgets/section_card.dart';
 
-/// Asignacion del equipo, periodo a periodo.
+/// Asignación del equipo, periodo a periodo.
 ///
-/// Es la decision mas repetitiva del simulador y la que mas separa a quien
+/// Es la decisión más repetitiva del simulador y la que más separa a quien
 /// dirige de quien improvisa: la capacidad no asignada no se guarda para
-/// despues, simplemente se pierde.
+/// después, simplemente se pierde.
 class TeamTab extends StatelessWidget {
   const TeamTab({super.key});
 
@@ -31,7 +31,7 @@ class TeamTab extends StatelessWidget {
           title: 'Asignaciones del periodo ${state.period}',
           subtitle: idle == 0
               ? 'Todo el equipo tiene trabajo habilitado'
-              : '$idle persona(s) perderan su capacidad completa',
+              : '$idle persona(s) perderán su capacidad completa',
           icon: Icons.assignment_ind_outlined,
           accent: idle == 0 ? AppColors.execution : AppColors.danger,
           trailing: TextButton(
@@ -61,7 +61,7 @@ class TeamTab extends StatelessWidget {
         ),
         SectionCard(
           title: 'Reforzar el equipo',
-          subtitle: 'Cuesta curva de aprendizaje y coordinacion',
+          subtitle: 'Cuesta curva de aprendizaje y coordinación',
           icon: Icons.person_add_alt_outlined,
           accent: AppColors.planning,
           child: Column(
@@ -104,8 +104,8 @@ class TeamTab extends StatelessWidget {
                   )),
               const NoteBox(
                 text: 'Quien se incorpora ahora empieza al 45% de su '
-                    'rendimiento y ademas consume tiempo de los demas. En un '
-                    'proyecto atrasado, contratar suele atrasar mas.',
+                    'rendimiento y además consume tiempo de los demás. En un '
+                    'proyecto atrasado, contratar suele atrasar más.',
                 icon: Icons.trending_down,
                 color: AppColors.warning,
               ),
@@ -114,7 +114,7 @@ class TeamTab extends StatelessWidget {
         ),
         SectionCard(
           title: 'Efectos sobre la capacidad',
-          subtitle: 'De donde sale la capacidad efectiva del periodo',
+          subtitle: 'De dónde sale la capacidad efectiva del periodo',
           icon: Icons.calculate_outlined,
           accent: AppColors.info,
           child: _CapacityBreakdown(state: state, vm: vm),
@@ -201,7 +201,7 @@ class _AssignmentRow extends StatelessWidget {
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              hintText: 'Sin asignacion',
+              hintText: 'Sin asignación',
             ),
             items: available
                 .map((WorkPackage p) => DropdownMenuItem<String>(
@@ -250,9 +250,9 @@ class _CapacityBreakdown extends StatelessWidget {
     return Column(
       children: <Widget>[
         _line('Horas nominales del equipo', formatHours(raw)),
-        _line('Coordinacion (${state.team.length} personas)',
+        _line('Coordinación (${state.team.length} personas)',
             '× ${efficiency.toStringAsFixed(2)}'),
-        _line('Mentoria a nuevos ($newcomers)',
+        _line('Mentoría a nuevos ($newcomers)',
             '× ${mentoring.toStringAsFixed(2)}'),
         _line('Gobernanza (${state.methodology.shortLabel})',
             '× ${governance.toStringAsFixed(2)}'),

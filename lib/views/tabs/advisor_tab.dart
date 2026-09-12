@@ -7,12 +7,12 @@ import '../app_scope.dart';
 import '../widgets/advisor_card.dart';
 import '../widgets/section_card.dart';
 
-/// Asistente de direccion de proyectos.
+/// Asistente de dirección de proyectos.
 ///
-/// Muestra el analisis del estado actual agrupado por urgencia. La cabecera
+/// Muestra el análisis del estado actual agrupado por urgencia. La cabecera
 /// explica que el asistente ve exactamente lo mismo que el estudiante: es una
-/// aclaracion honesta y tambien una leccion sobre los limites de cualquier
-/// herramienta de apoyo a la decision.
+/// aclaración honesta y también una lección sobre los límites de cualquier
+/// herramienta de apoyo a la decisión.
 class AdvisorTab extends StatelessWidget {
   const AdvisorTab({super.key});
 
@@ -36,11 +36,11 @@ class AdvisorTab extends StatelessWidget {
           icon: Icons.support_agent,
           accent: AppColors.accent,
           child: const NoteBox(
-            text: 'El asistente aplica reglas de direccion de proyectos sobre '
-                'la misma informacion que ves tu: estimaciones, avance '
-                'reportado e indicadores. No conoce la duracion real de los '
+            text: 'El asistente aplica reglas de dirección de proyectos sobre '
+                'la misma información que ves tú: estimaciones, avance '
+                'reportado e indicadores. No conoce la duración real de los '
                 'paquetes ni los riesgos que no has identificado. Sus '
-                'consejos son buenos en la medida en que tu informacion lo '
+                'consejos son buenos en la medida en que tu información lo '
                 'sea.',
             icon: Icons.visibility_outlined,
             color: AppColors.accent,
@@ -49,12 +49,12 @@ class AdvisorTab extends StatelessWidget {
         if (messages.isEmpty)
           const SectionCard(
             title: 'Sin observaciones',
-            subtitle: 'Nada que corregir con la informacion disponible',
+            subtitle: 'Nada que corregir con la información disponible',
             icon: Icons.check_circle_outline,
             accent: AppColors.success,
             child: Text(
               'Que no haya alertas no significa que no haya riesgo: significa '
-              'que ninguna regla se activo con lo que hoy sabes.',
+              'que ninguna regla se activó con lo que hoy sabes.',
               style: TextStyle(
                 fontSize: 12.5,
                 height: 1.4,
@@ -68,7 +68,7 @@ class AdvisorTab extends StatelessWidget {
           if (list.isEmpty) return const SizedBox.shrink();
           return SectionCard(
             title: severity.label,
-            subtitle: '${list.length} observacion(es)',
+            subtitle: '${list.length} observación(es)',
             icon: _iconFor(severity),
             accent: _colorFor(severity),
             child: Column(

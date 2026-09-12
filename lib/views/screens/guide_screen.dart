@@ -4,10 +4,10 @@ import '../../core/app_theme.dart';
 import '../../data/models/methodology.dart';
 import '../widgets/section_card.dart';
 
-/// Guia de referencia: metodologias e indicadores.
+/// Guía de referencia: metodologías e indicadores.
 ///
 /// No sustituye a la clase: sirve para consultar durante la partida el
-/// significado exacto de un indice o el criterio para elegir enfoque, que es
+/// significado exacto de un índice o el criterio para elegir enfoque, que es
 /// justo cuando el concepto se necesita y por tanto se aprende.
 class GuideScreen extends StatelessWidget {
   const GuideScreen({super.key});
@@ -15,12 +15,12 @@ class GuideScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Guia de referencia')),
+      appBar: AppBar(title: const Text('Guía de referencia')),
       body: ListView(
         padding: const EdgeInsets.only(top: 16, bottom: 28),
         children: <Widget>[
           SectionCard(
-            title: 'Como elegir el enfoque',
+            title: 'Cómo elegir el enfoque',
             subtitle: 'Ninguno es mejor en abstracto',
             icon: Icons.alt_route,
             accent: AppColors.planning,
@@ -85,8 +85,8 @@ class GuideScreen extends StatelessWidget {
             ),
           ),
           const SectionCard(
-            title: 'Gestion del valor ganado (EVM)',
-            subtitle: 'Tres numeros que responden casi todo',
+            title: 'Gestión del valor ganado (EVM)',
+            subtitle: 'Tres números que responden casi todo',
             icon: Icons.insights,
             accent: AppColors.info,
             child: Column(
@@ -95,14 +95,14 @@ class GuideScreen extends StatelessWidget {
                 _Term(
                   term: 'PV · Valor planificado',
                   meaning:
-                      'Cuanto trabajo, valorizado, deberia estar terminado a '
-                      'la fecha segun la linea base.',
+                      'Cuánto trabajo, valorizado, debería estar terminado a '
+                      'la fecha según la línea base.',
                 ),
                 _Term(
                   term: 'EV · Valor ganado',
                   meaning:
-                      'Cuanto vale lo que realmente esta terminado. Es la '
-                      'unica medida honesta de avance.',
+                      'Cuánto vale lo que realmente está terminado. Es la '
+                      'única medida honesta de avance.',
                 ),
                 _Term(
                   term: 'AC · Costo real',
@@ -118,24 +118,24 @@ class GuideScreen extends StatelessWidget {
                   term: 'CPI = EV / AC',
                   meaning:
                       'Menor que 1 significa sobrecosto. Con 0.85 cada sol '
-                      'gastado produce 85 centimos de valor.',
+                      'gastado produce 85 céntimos de valor.',
                 ),
                 _Term(
                   term: 'EAC = BAC / CPI',
                   meaning:
-                      'Cuanto costara terminar si el desempenio se mantiene. '
+                      'Cuánto costará terminar si el desempeño se mantiene. '
                       'Es la cifra que hay que llevar al patrocinador.',
                 ),
                 _Term(
                   term: 'TCPI',
                   meaning:
-                      'Que eficiencia necesitas de aqui en adelante para cerrar '
+                      'Qué eficiencia necesitas de aquí en adelante para cerrar '
                       'dentro del presupuesto. Si es mucho mayor que tu CPI '
-                      'actual, el plan ya no es creible.',
+                      'actual, el plan ya no es creíble.',
                 ),
                 NoteBox(
-                  text: 'Estos indices avisan con periodos de anticipacion. '
-                      'Sirven solo si defines antes el umbral en que actuaras: '
+                  text: 'Estos índices avisan con periodos de anticipación. '
+                      'Sirven solo si defines antes el umbral en que actuarás: '
                       'decidirlo en plena crisis es tarde.',
                   icon: Icons.alarm,
                 ),
@@ -144,49 +144,49 @@ class GuideScreen extends StatelessWidget {
           ),
           const SectionCard(
             title: 'Efectos que el simulador modela',
-            subtitle: 'De donde salen los numeros que ves',
+            subtitle: 'De dónde salen los números que ves',
             icon: Icons.science_outlined,
             accent: AppColors.execution,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 _Term(
-                  term: 'Sesgo de estimacion',
+                  term: 'Sesgo de estimación',
                   meaning:
-                      'La duracion real de cada paquete se sortea alrededor de '
-                      '1.10 veces la estimacion, con dispersion. Las tareas '
+                      'La duración real de cada paquete se sortea alrededor de '
+                      '1.10 veces la estimación, con dispersión. Las tareas '
                       'casi nunca terminan antes.',
                 ),
                 _Term(
                   term: 'Ley de Brooks',
                   meaning:
                       'Cada persona adicional resta eficiencia por '
-                      'coordinacion, y quien entra nuevo rinde parcialmente y '
-                      'consume tiempo de los demas.',
+                      'coordinación, y quien entra nuevo rinde parcialmente y '
+                      'consume tiempo de los demás.',
                 ),
                 _Term(
-                  term: 'Economia de los defectos',
+                  term: 'Economía de los defectos',
                   meaning:
                       'Lo que no se controla al construir reaparece en pruebas '
-                      'multiplicado por ocho en horas de correccion.',
+                      'multiplicado por ocho en horas de corrección.',
                 ),
                 _Term(
                   term: 'Traslape de fases',
                   meaning:
                       'No hace falta terminar una fase para empezar la '
-                      'siguiente, pero si alcanzar un umbral de avance. Antes '
+                      'siguiente, pero sí alcanzar un umbral de avance. Antes '
                       'de eso, las horas asignadas se pierden.',
                 ),
                 _Term(
                   term: 'Riesgos no identificados',
                   meaning:
-                      'Ocurren igual, con 25% mas de impacto en horas y sin '
+                      'Ocurren igual, con 25% más de impacto en horas y sin '
                       'ninguna respuesta preparada.',
                 ),
                 _Term(
                   term: 'Horas extra',
                   meaning:
-                      'Suman 25% de capacidad, cuestan 60% mas y acumulan '
+                      'Suman 25% de capacidad, cuestan 60% más y acumulan '
                       'fatiga que se descuenta en los periodos siguientes.',
                 ),
               ],

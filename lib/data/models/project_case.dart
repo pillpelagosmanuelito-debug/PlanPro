@@ -9,21 +9,21 @@ enum ProjectPhase {
   String get label {
     switch (this) {
       case ProjectPhase.analysis:
-        return 'Analisis';
+        return 'Análisis';
       case ProjectPhase.design:
-        return 'Diseno';
+        return 'Diseño';
       case ProjectPhase.build:
-        return 'Construccion';
+        return 'Construcción';
       case ProjectPhase.test:
         return 'Pruebas';
       case ProjectPhase.deploy:
-        return 'Implantacion';
+        return 'Implantación';
     }
   }
 
   int get order => index;
 
-  /// Avance minimo de las fases anteriores para poder trabajar en esta.
+  /// Avance mínimo de las fases anteriores para poder trabajar en esta.
   ///
   /// No exige 100%: las fases se traslapan (fast tracking), que es como se
   /// dirige un proyecto real, y por eso el avance parcial habilita la
@@ -49,7 +49,7 @@ enum ProjectPhase {
       );
 }
 
-/// Definicion de un paquete de trabajo dentro del caso.
+/// Definición de un paquete de trabajo dentro del caso.
 class PackageSpec {
   const PackageSpec({
     required this.id,
@@ -65,10 +65,10 @@ class PackageSpec {
   final String name;
   final ProjectPhase phase;
 
-  /// Horas que el equipo estima. La duracion real es otra cosa.
+  /// Horas que el equipo estima. La duración real es otra cosa.
   final double estimatedHours;
 
-  /// Multiplicador de dificultad: afecta la desviacion real y los defectos.
+  /// Multiplicador de dificultad: afecta la desviación real y los defectos.
   final double complexity;
 
   /// Si puede excluirse del alcance comprometido.
@@ -100,14 +100,14 @@ class ProjectCase {
   final String client;
   final String sector;
 
-  /// Acta de constitucion resumida.
+  /// Acta de constitución resumida.
   final String charter;
   final String objective;
 
-  /// Si los requisitos cambiaran durante la ejecucion.
+  /// Si los requisitos cambiaran durante la ejecución.
   final bool volatileRequirements;
 
-  /// Si el entorno exige documentacion y trazabilidad formal.
+  /// Si el entorno exige documentación y trazabilidad formal.
   final bool regulated;
 
   final double budgetCeiling;
@@ -142,18 +142,18 @@ class ProjectCase {
   static const List<ProjectCase> catalog = <ProjectCase>[
     ProjectCase(
       id: 'matricula',
-      name: 'Sistema de Matricula Universitaria',
+      name: 'Sistema de Matrícula Universitaria',
       client: 'Universidad Nacional del Centro',
-      sector: 'Educacion superior',
+      sector: 'Educación superior',
       charter:
           'La universidad matricula a 18,000 estudiantes con un sistema que '
           'se cae cada semestre. Vicerrectorado quiere el nuevo sistema listo '
-          'para la matricula de marzo. Las escuelas profesionales todavia '
-          'discuten como sera el proceso de convalidaciones y cada una pide '
+          'para la matrícula de marzo. Las escuelas profesionales todavía '
+          'discuten cómo será el proceso de convalidaciones y cada una pide '
           'algo distinto.',
       objective:
-          'Poner en produccion el sistema de matricula antes del proceso de '
-          'marzo, sin caidas el primer dia.',
+          'Poner en producción el sistema de matrícula antes del proceso de '
+          'marzo, sin caídas el primer día.',
       volatileRequirements: true,
       regulated: false,
       budgetCeiling: 450000,
@@ -166,29 +166,29 @@ class ProjectCase {
         'infra_outage',
       ],
       changeHints: <String>[
-        'Las escuelas profesionales aun no acuerdan el flujo de convalidaciones.',
-        'Tesoreria pidio "revisar" la conciliacion de pagos mas adelante.',
+        'Las escuelas profesionales aún no acuerdan el flujo de convalidaciones.',
+        'Tesorería pidió "revisar" la conciliación de pagos más adelante.',
       ],
       packages: <PackageSpec>[
         PackageSpec(
           id: 'a1',
-          name: 'Relevamiento del proceso de matricula',
+          name: 'Relevamiento del proceso de matrícula',
           phase: ProjectPhase.analysis,
           estimatedHours: 170,
           complexity: 1.0,
-          detail: 'Entrevistas con escuelas, registro academico y tesoreria.',
+          detail: 'Entrevistas con escuelas, registro académico y tesorería.',
         ),
         PackageSpec(
           id: 'a2',
-          name: 'Analisis de reglas academicas',
+          name: 'Análisis de reglas académicas',
           phase: ProjectPhase.analysis,
           estimatedHours: 125,
           complexity: 0.9,
-          detail: 'Prerrequisitos, creditos, convalidaciones y excepciones.',
+          detail: 'Prerrequisitos, créditos, convalidaciones y excepciones.',
         ),
         PackageSpec(
           id: 'd1',
-          name: 'Arquitectura de la solucion',
+          name: 'Arquitectura de la solución',
           phase: ProjectPhase.design,
           estimatedHours: 145,
           complexity: 1.2,
@@ -196,7 +196,7 @@ class ProjectCase {
         ),
         PackageSpec(
           id: 'd2',
-          name: 'Diseno funcional y de interfaces',
+          name: 'Diseño funcional y de interfaces',
           phase: ProjectPhase.design,
           estimatedHours: 180,
           complexity: 1.0,
@@ -204,36 +204,36 @@ class ProjectCase {
         ),
         PackageSpec(
           id: 'c1',
-          name: 'Modulo de inscripcion de cursos',
+          name: 'Módulo de inscripción de cursos',
           phase: ProjectPhase.build,
           estimatedHours: 290,
           complexity: 1.0,
-          detail: 'Nucleo del sistema: seleccion de cursos y validaciones.',
+          detail: 'Núcleo del sistema: selección de cursos y validaciones.',
         ),
         PackageSpec(
           id: 'c2',
-          name: 'Modulo de pagos y conciliacion',
+          name: 'Módulo de pagos y conciliación',
           phase: ProjectPhase.build,
           estimatedHours: 270,
           complexity: 1.3,
-          detail: 'Integracion bancaria y conciliacion automatica.',
+          detail: 'Integración bancaria y conciliación automática.',
         ),
         PackageSpec(
           id: 'c3',
-          name: 'Reportes y tablero academico',
+          name: 'Reportes y tablero académico',
           phase: ProjectPhase.build,
           estimatedHours: 215,
           complexity: 0.9,
           optional: true,
-          detail: 'Deseable para gestion, no bloquea la matricula.',
+          detail: 'Deseable para gestión, no bloquea la matrícula.',
         ),
         PackageSpec(
           id: 'c4',
-          name: 'Integracion con sistema contable',
+          name: 'Integración con sistema contable',
           phase: ProjectPhase.build,
           estimatedHours: 235,
           complexity: 1.4,
-          detail: 'Sistema antiguo, sin documentacion y con soporte externo.',
+          detail: 'Sistema antiguo, sin documentación y con soporte externo.',
         ),
         PackageSpec(
           id: 't1',
@@ -241,11 +241,11 @@ class ProjectCase {
           phase: ProjectPhase.test,
           estimatedHours: 200,
           complexity: 1.0,
-          detail: '18,000 estudiantes entran el mismo dia a la misma hora.',
+          detail: '18,000 estudiantes entran el mismo día a la misma hora.',
         ),
         PackageSpec(
           id: 't2',
-          name: 'Correccion de defectos',
+          name: 'Corrección de defectos',
           phase: ProjectPhase.test,
           estimatedHours: 125,
           complexity: 1.0,
@@ -253,11 +253,11 @@ class ProjectCase {
         ),
         PackageSpec(
           id: 'i1',
-          name: 'Capacitacion y puesta en produccion',
+          name: 'Capacitación y puesta en producción',
           phase: ProjectPhase.deploy,
           estimatedHours: 170,
           complexity: 0.8,
-          detail: 'Migracion de datos, capacitacion y acompanamiento.',
+          detail: 'Migración de datos, capacitación y acompañamiento.',
         ),
       ],
     ),
@@ -267,13 +267,13 @@ class ProjectCase {
       client: 'Municipalidad Provincial',
       sector: 'Infraestructura sanitaria',
       charter:
-          'Obra de ampliacion de una planta de tratamiento con expediente '
-          'tecnico aprobado y financiamiento publico. El alcance esta '
-          'definido por el expediente y cualquier cambio exige aprobacion '
-          'formal. La contraloria revisara el expediente de cierre.',
+          'Obra de ampliación de una planta de tratamiento con expediente '
+          'técnico aprobado y financiamiento público. El alcance está '
+          'definido por el expediente y cualquier cambio exige aprobación '
+          'formal. La contraloría revisará el expediente de cierre.',
       objective:
           'Ampliar la capacidad de tratamiento cumpliendo el expediente '
-          'tecnico, con documentacion completa para la supervision.',
+          'técnico, con documentación completa para la supervisión.',
       volatileRequirements: false,
       regulated: true,
       budgetCeiling: 470000,
@@ -286,17 +286,17 @@ class ProjectCase {
         'quality_audit',
       ],
       changeHints: <String>[
-        'La supervision podria observar el sistema de medicion de caudal.',
-        'El area usuaria insinuo que faltaria un tablero de control adicional.',
+        'La supervisión podría observar el sistema de medición de caudal.',
+        'El área usuaria insinuó que faltaría un tablero de control adicional.',
       ],
       packages: <PackageSpec>[
         PackageSpec(
           id: 'a1',
-          name: 'Revision del expediente tecnico',
+          name: 'Revisión del expediente técnico',
           phase: ProjectPhase.analysis,
           estimatedHours: 155,
           complexity: 0.9,
-          detail: 'Verificacion de metrados, planos y compatibilidad.',
+          detail: 'Verificación de metrados, planos y compatibilidad.',
         ),
         PackageSpec(
           id: 'a2',
@@ -304,11 +304,11 @@ class ProjectCase {
           phase: ProjectPhase.analysis,
           estimatedHours: 135,
           complexity: 1.1,
-          detail: 'Topografia, suelos y tramites con la autoridad del agua.',
+          detail: 'Topografía, suelos y trámites con la autoridad del agua.',
         ),
         PackageSpec(
           id: 'd1',
-          name: 'Ingenieria de detalle hidraulica',
+          name: 'Ingeniería de detalle hidráulica',
           phase: ProjectPhase.design,
           estimatedHours: 170,
           complexity: 1.2,
@@ -316,23 +316,23 @@ class ProjectCase {
         ),
         PackageSpec(
           id: 'd2',
-          name: 'Diseno electromecanico y de control',
+          name: 'Diseño electromecánico y de control',
           phase: ProjectPhase.design,
           estimatedHours: 155,
           complexity: 1.1,
-          detail: 'Bombas, tableros e instrumentacion.',
+          detail: 'Bombas, tableros e instrumentación.',
         ),
         PackageSpec(
           id: 'c1',
-          name: 'Obras civiles de la unidad de sedimentacion',
+          name: 'Obras civiles de la unidad de sedimentación',
           phase: ProjectPhase.build,
           estimatedHours: 315,
           complexity: 1.0,
-          detail: 'Estructura principal de la ampliacion.',
+          detail: 'Estructura principal de la ampliación.',
         ),
         PackageSpec(
           id: 'c2',
-          name: 'Montaje electromecanico',
+          name: 'Montaje electromecánico',
           phase: ProjectPhase.build,
           estimatedHours: 260,
           complexity: 1.3,
@@ -340,16 +340,16 @@ class ProjectCase {
         ),
         PackageSpec(
           id: 'c3',
-          name: 'Sistema de telemetria',
+          name: 'Sistema de telemetría',
           phase: ProjectPhase.build,
           estimatedHours: 190,
           complexity: 1.2,
           optional: true,
-          detail: 'Mejora la operacion, no condiciona la puesta en marcha.',
+          detail: 'Mejora la operación, no condiciona la puesta en marcha.',
         ),
         PackageSpec(
           id: 'c4',
-          name: 'Instalaciones sanitarias y electricas',
+          name: 'Instalaciones sanitarias y eléctricas',
           phase: ProjectPhase.build,
           estimatedHours: 225,
           complexity: 1.0,
@@ -357,7 +357,7 @@ class ProjectCase {
         ),
         PackageSpec(
           id: 't1',
-          name: 'Pruebas hidraulicas y de calidad de agua',
+          name: 'Pruebas hidráulicas y de calidad de agua',
           phase: ProjectPhase.test,
           estimatedHours: 190,
           complexity: 1.1,
@@ -369,7 +369,7 @@ class ProjectCase {
           phase: ProjectPhase.test,
           estimatedHours: 125,
           complexity: 1.0,
-          detail: 'Crece con lo que no se controlo durante la ejecucion.',
+          detail: 'Crece con lo que no se controló durante la ejecución.',
         ),
         PackageSpec(
           id: 'i1',
@@ -377,22 +377,22 @@ class ProjectCase {
           phase: ProjectPhase.deploy,
           estimatedHours: 180,
           complexity: 0.9,
-          detail: 'Operacion asistida y documentacion para la supervision.',
+          detail: 'Operación asistida y documentación para la supervisión.',
         ),
       ],
     ),
     ProjectCase(
       id: 'cobranzas',
-      name: 'Transformacion Digital de Cobranzas',
-      client: 'Caja municipal de ahorro y credito',
+      name: 'Transformación Digital de Cobranzas',
+      client: 'Caja municipal de ahorro y crédito',
       sector: 'Servicios financieros',
       charter:
-          'La caja quiere digitalizar la cobranza de creditos vencidos. El '
-          'negocio todavia esta definiendo la estrategia de contacto y la '
-          'segmentacion de clientes, pero el regulador exige trazabilidad de '
-          'cada gestion y proteccion de datos personales.',
+          'La caja quiere digitalizar la cobranza de créditos vencidos. El '
+          'negocio todavía está definiendo la estrategia de contacto y la '
+          'segmentación de clientes, pero el regulador exige trazabilidad de '
+          'cada gestión y protección de datos personales.',
       objective:
-          'Reducir el tiempo de gestion de cobranza con un proceso digital '
+          'Reducir el tiempo de gestión de cobranza con un proceso digital '
           'auditable y conforme con la normativa de datos personales.',
       volatileRequirements: true,
       regulated: true,
@@ -406,21 +406,21 @@ class ProjectCase {
         'quality_audit',
       ],
       changeHints: <String>[
-        'La gerencia comercial aun discute la segmentacion de clientes.',
-        'Cumplimiento podria exigir un registro adicional de consentimiento.',
+        'La gerencia comercial aún discute la segmentación de clientes.',
+        'Cumplimiento podría exigir un registro adicional de consentimiento.',
       ],
       packages: <PackageSpec>[
         PackageSpec(
           id: 'a1',
-          name: 'Diagnostico del proceso de cobranza',
+          name: 'Diagnóstico del proceso de cobranza',
           phase: ProjectPhase.analysis,
           estimatedHours: 170,
           complexity: 1.0,
-          detail: 'Mapeo de la gestion actual y sus tiempos.',
+          detail: 'Mapeo de la gestión actual y sus tiempos.',
         ),
         PackageSpec(
           id: 'a2',
-          name: 'Analisis normativo y de datos personales',
+          name: 'Análisis normativo y de datos personales',
           phase: ProjectPhase.analysis,
           estimatedHours: 135,
           complexity: 1.2,
@@ -428,15 +428,15 @@ class ProjectCase {
         ),
         PackageSpec(
           id: 'd1',
-          name: 'Diseno del nuevo proceso',
+          name: 'Diseño del nuevo proceso',
           phase: ProjectPhase.design,
           estimatedHours: 155,
           complexity: 1.0,
-          detail: 'Reglas de segmentacion y canales de contacto.',
+          detail: 'Reglas de segmentación y canales de contacto.',
         ),
         PackageSpec(
           id: 'd2',
-          name: 'Arquitectura e integracion con el core',
+          name: 'Arquitectura e integración con el core',
           phase: ProjectPhase.design,
           estimatedHours: 180,
           complexity: 1.3,
@@ -444,11 +444,11 @@ class ProjectCase {
         ),
         PackageSpec(
           id: 'c1',
-          name: 'Motor de gestion de cobranza',
+          name: 'Motor de gestión de cobranza',
           phase: ProjectPhase.build,
           estimatedHours: 300,
           complexity: 1.1,
-          detail: 'Asignacion de carteras y seguimiento de gestiones.',
+          detail: 'Asignación de carteras y seguimiento de gestiones.',
         ),
         PackageSpec(
           id: 'c2',
@@ -456,16 +456,16 @@ class ProjectCase {
           phase: ProjectPhase.build,
           estimatedHours: 245,
           complexity: 1.0,
-          detail: 'Mensajeria, correo y portal de pago.',
+          detail: 'Mensajería, correo y portal de pago.',
         ),
         PackageSpec(
           id: 'c3',
-          name: 'Analitica de recuperacion',
+          name: 'Analítica de recuperación',
           phase: ProjectPhase.build,
           estimatedHours: 200,
           complexity: 1.2,
           optional: true,
-          detail: 'Priorizacion inteligente de carteras; deseable, no critico.',
+          detail: 'Priorización inteligente de carteras; deseable, no crítico.',
         ),
         PackageSpec(
           id: 'c4',
@@ -473,7 +473,7 @@ class ProjectCase {
           phase: ProjectPhase.build,
           estimatedHours: 215,
           complexity: 1.3,
-          detail: 'Exigido por el regulador para cada gestion.',
+          detail: 'Exigido por el regulador para cada gestión.',
         ),
         PackageSpec(
           id: 't1',
@@ -481,23 +481,23 @@ class ProjectCase {
           phase: ProjectPhase.test,
           estimatedHours: 200,
           complexity: 1.1,
-          detail: 'Incluye prueba de proteccion de datos.',
+          detail: 'Incluye prueba de protección de datos.',
         ),
         PackageSpec(
           id: 't2',
-          name: 'Correccion de hallazgos',
+          name: 'Corrección de hallazgos',
           phase: ProjectPhase.test,
           estimatedHours: 125,
           complexity: 1.0,
-          detail: 'Depende de la calidad con que se construyo.',
+          detail: 'Depende de la calidad con que se construyó.',
         ),
         PackageSpec(
           id: 'i1',
-          name: 'Despliegue y capacitacion de gestores',
+          name: 'Despliegue y capacitación de gestores',
           phase: ProjectPhase.deploy,
           estimatedHours: 170,
           complexity: 0.9,
-          detail: 'Cambio de habitos en 60 gestores de cobranza.',
+          detail: 'Cambio de hábitos en 60 gestores de cobranza.',
         ),
       ],
     ),

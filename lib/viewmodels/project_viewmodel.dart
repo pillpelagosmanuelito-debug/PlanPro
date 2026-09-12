@@ -13,12 +13,12 @@ import '../data/models/team_member.dart';
 import '../data/models/work_package.dart';
 import '../data/repositories/project_repository.dart';
 
-/// Estado de carga de la aplicacion.
+/// Estado de carga de la aplicación.
 enum ViewStatus { loading, ready, error }
 
 /// Coordina la partida entre las vistas y el dominio.
 ///
-/// Aplica el patron MVVM: la vista observa este objeto y no conoce motores ni
+/// Aplica el patrón MVVM: la vista observa este objeto y no conoce motores ni
 /// almacenamiento; el ViewModel traduce intenciones ("contratar", "cerrar
 /// periodo") en llamadas al repositorio y notifica el nuevo estado.
 class ProjectViewModel extends ChangeNotifier {
@@ -46,18 +46,18 @@ class ProjectViewModel extends ChangeNotifier {
   List<Map<String, dynamic>> _finished = <Map<String, dynamic>>[];
   List<Map<String, dynamic>> get finished => _finished;
 
-  // Ultimo periodo cerrado, para el resumen que ve el estudiante.
+  // Último periodo cerrado, para el resumen que ve el estudiante.
   PeriodResult? _lastResult;
   PeriodResult? get lastResult => _lastResult;
 
-  // Riesgos revelados por el ultimo taller.
+  // Riesgos revelados por el último taller.
   List<RiskItem> _lastRevealed = <RiskItem>[];
   List<RiskItem> get lastRevealed => _lastRevealed;
 
   EvaluationReport? _report;
   EvaluationReport? get report => _report;
 
-  // Parametros de la pantalla de planificacion.
+  // Parámetros de la pantalla de planificación.
   int _plannedPeriods = 10;
   int get plannedPeriods => _plannedPeriods;
 
@@ -138,7 +138,7 @@ class ProjectViewModel extends ChangeNotifier {
   }
 
   // ------------------------------------------------------------------
-  // Inicio y planificacion
+  // Inicio y planificación
   // ------------------------------------------------------------------
 
   void goToPlanning() {
@@ -149,7 +149,7 @@ class ProjectViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Vuelve al acta de constitucion desde la planificacion.
+  /// Vuelve al acta de constitución desde la planificación.
   void backToCharter() {
     final ProjectState? s = state;
     if (s == null || s.stage != ProjectStage.planning) return;
@@ -242,7 +242,7 @@ class ProjectViewModel extends ChangeNotifier {
     );
   }
 
-  /// Periodos que el alcance necesitaria con la capacidad actual.
+  /// Periodos que el alcance necesitaría con la capacidad actual.
   double periodsNeeded() {
     final ProjectState? s = state;
     if (s == null) return 0;
@@ -264,7 +264,7 @@ class ProjectViewModel extends ChangeNotifier {
   }
 
   // ------------------------------------------------------------------
-  // Ejecucion
+  // Ejecución
   // ------------------------------------------------------------------
 
   void setOvertime(bool value) {

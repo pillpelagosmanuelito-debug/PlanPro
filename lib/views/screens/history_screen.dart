@@ -8,9 +8,9 @@ import '../widgets/section_card.dart';
 
 /// Historial de proyectos cerrados.
 ///
-/// Sirve para comparar partidas: mismo caso, distinta metodologia, distinto
-/// resultado. Esa comparacion es la evidencia que convence mas que cualquier
-/// definicion de manual.
+/// Sirve para comparar partidas: mismo caso, distinta metodología, distinto
+/// resultado. Esa comparación es la evidencia que convence más que cualquier
+/// definición de manual.
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
 
@@ -31,7 +31,7 @@ class HistoryScreen extends StatelessWidget {
                   builder: (BuildContext ctx) => AlertDialog(
                     title: const Text('Borrar historial'),
                     content: const Text(
-                      'Se eliminaran todos los registros de partidas cerradas.',
+                      'Se eliminarán todos los registros de partidas cerradas.',
                     ),
                     actions: <Widget>[
                       TextButton(
@@ -56,7 +56,7 @@ class HistoryScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(32),
                 child: Text(
-                  'Todavia no has cerrado ningun proyecto.',
+                  'Todavía no has cerrado ningún proyecto.',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 13, color: AppColors.textSoft),
                 ),

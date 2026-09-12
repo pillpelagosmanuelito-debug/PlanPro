@@ -1,4 +1,4 @@
-/// Utilidades de formato numerico.
+/// Utilidades de formato numérico.
 ///
 /// Escritas a mano para no depender de `intl` y mantener una sola dependencia
 /// externa en el MVP.
@@ -51,6 +51,6 @@ String formatPeriods(double value) {
   return '$sign${value.toStringAsFixed(value.truncateToDouble() == value ? 0 : 1)} $unit';
 }
 
-/// `sem 12` a partir del numero de periodo (quincenas).
+/// `sem 12` a partir del número de periodo (quincenas).
 String formatWeek(int period, int weeksPerPeriod) =>
     'sem ${period * weeksPerPeriod}';

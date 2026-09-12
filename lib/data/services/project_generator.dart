@@ -12,8 +12,8 @@ import '../models/work_package.dart';
 
 /// Construye el proyecto real a partir de una semilla.
 ///
-/// La duracion real de cada paquete queda oculta: el estudiante solo ve la
-/// estimacion del equipo, que es sistematicamente optimista. Dos estudiantes
+/// La duración real de cada paquete queda oculta: el estudiante solo ve la
+/// estimación del equipo, que es sistemáticamente optimista. Dos estudiantes
 /// con la misma semilla enfrentan el mismo proyecto, de modo que las
 /// diferencias de resultado se explican por sus decisiones.
 class ProjectGenerator {
@@ -41,7 +41,7 @@ class ProjectGenerator {
         config.estimationBias,
         config.estimationSpread,
       );
-      // La complejidad amplifica la desviacion, no el trabajo base.
+      // La complejidad amplifica la desviación, no el trabajo base.
       final double adjusted = 1 + (factor - 1) * spec.complexity;
       final double real = spec.estimatedHours *
           adjusted *
@@ -49,7 +49,7 @@ class ProjectGenerator {
       packages.add(WorkPackage.fromSpec(spec, real));
     }
 
-    // Riesgos: dos visibles desde el acta, el resto solo con analisis.
+    // Riesgos: dos visibles desde el acta, el resto solo con análisis.
     final List<RiskItem> risks = projectCase.riskIds
         .map((String id) => RiskItem.fromCatalog(id))
         .toList();
@@ -75,7 +75,7 @@ class ProjectGenerator {
   }
 
   /// Muestra lognormal: modela que las tareas casi nunca terminan antes y a
-  /// veces terminan mucho despues.
+  /// veces terminan mucho después.
   double _lognormal(math.Random random, double median, double sigma) {
     final double u1 = math.max(1e-9, random.nextDouble());
     final double u2 = random.nextDouble();

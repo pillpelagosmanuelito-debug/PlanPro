@@ -35,7 +35,7 @@ void main() {
 
     expect(find.text('Nuevo proyecto'), findsOneWidget);
     expect(find.text('1. Elige el caso'), findsOneWidget);
-    expect(find.textContaining('Sistema de Matricula'), findsWidgets);
+    expect(find.textContaining('Sistema de Matrícula'), findsWidgets);
   });
 
   testWidgets('la guia de referencia se abre desde el inicio', (
@@ -44,7 +44,7 @@ void main() {
     await tester.pumpWidget(const ProjectManagementSimulatorApp());
     await tester.pumpAndSettle();
 
-    final Finder guideButton = find.text('Guia de metodologias e indicadores');
+    final Finder guideButton = find.text('Guía de metodologías e indicadores');
     await tester.dragUntilVisible(
       guideButton,
       find.byType(ListView),
@@ -55,7 +55,7 @@ void main() {
     await tester.tap(guideButton);
     await tester.pumpAndSettle();
 
-    expect(find.text('Guia de referencia'), findsOneWidget);
+    expect(find.text('Guía de referencia'), findsOneWidget);
 
     final Finder spiText = find.textContaining('SPI = EV / PV');
     await tester.dragUntilVisible(

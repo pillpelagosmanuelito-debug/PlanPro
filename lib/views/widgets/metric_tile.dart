@@ -85,7 +85,7 @@ class MetricTile extends StatelessWidget {
   }
 }
 
-/// Barra de indice con referencia en 1.00.
+/// Barra de índice con referencia en 1.00.
 ///
 /// El punto de referencia importa: un SPI de 0.9 no significa nada sin saber
 /// que 1.0 es "al ritmo planificado".

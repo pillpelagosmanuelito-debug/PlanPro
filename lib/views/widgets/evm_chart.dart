@@ -7,8 +7,8 @@ import '../../data/models/evm_snapshot.dart';
 
 /// Curva S del proyecto: valor planificado, valor ganado y costo real.
 ///
-/// Es el grafico canonico del control de proyectos. Se dibuja con
-/// `CustomPainter` para no agregar dependencias de graficos al MVP.
+/// Es el gráfico canónico del control de proyectos. Se dibuja con
+/// `CustomPainter` para no agregar dependencias de gráficos al MVP.
 class EvmChart extends StatelessWidget {
   const EvmChart({super.key, required this.snapshots});
 
@@ -21,7 +21,7 @@ class EvmChart extends StatelessWidget {
         height: 140,
         child: Center(
           child: Text(
-            'Los indicadores apareceran al cerrar el primer periodo.',
+            'Los indicadores aparecerán al cerrar el primer periodo.',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 12, color: AppColors.textSoft),
           ),

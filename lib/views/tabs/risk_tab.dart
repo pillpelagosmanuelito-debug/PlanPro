@@ -8,11 +8,11 @@ import '../../viewmodels/project_viewmodel.dart';
 import '../app_scope.dart';
 import '../widgets/section_card.dart';
 
-/// Modulo 4: Riesgos.
+/// Módulo 4: Riesgos.
 ///
-/// El registro solo muestra los riesgos identificados. Los demas existen y
-/// pueden ocurrir: esa asimetria es deliberada y es la leccion central del
-/// modulo.
+/// El registro solo muestra los riesgos identificados. Los demás existen y
+/// pueden ocurrir: esa asimetría es deliberada y es la lección central del
+/// módulo.
 class RiskTab extends StatelessWidget {
   const RiskTab({super.key});
 
@@ -34,7 +34,7 @@ class RiskTab extends StatelessWidget {
       padding: const EdgeInsets.only(top: 14, bottom: 24),
       children: <Widget>[
         SectionCard(
-          title: 'Exposicion al riesgo',
+          title: 'Exposición al riesgo',
           subtitle: 'Probabilidad por impacto, en dinero',
           icon: Icons.shield_outlined,
           accent: AppColors.warning,
@@ -45,7 +45,7 @@ class RiskTab extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: _Stat(
-                      label: 'Exposicion conocida',
+                      label: 'Exposición conocida',
                       value: formatMoney(state.riskExposure(hourValue)),
                       color: AppColors.warning,
                     ),
@@ -65,7 +65,7 @@ class RiskTab extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 'Registro: ${identified.length} de ${state.risks.length} '
-                'riesgos del proyecto. Los que no estan aqui no dejan de '
+                'riesgos del proyecto. Los que no están aquí no dejan de '
                 'existir.',
                 style: const TextStyle(
                   fontSize: 12,
@@ -82,14 +82,14 @@ class RiskTab extends StatelessWidget {
                 label: Text(
                   identified.length >= state.risks.length
                       ? 'No quedan riesgos por identificar'
-                      : 'Taller de identificacion · '
+                      : 'Taller de identificación · '
                           '${formatMoney(vm.workshopCost)}',
                 ),
               ),
               if (vm.lastRevealed.isNotEmpty) ...<Widget>[
                 const SizedBox(height: 12),
                 NoteBox(
-                  text: 'El taller revelo: '
+                  text: 'El taller reveló: '
                       '${vm.lastRevealed.map((RiskItem r) => r.name).join(', ')}.',
                   icon: Icons.visibility_outlined,
                   color: AppColors.success,
@@ -101,7 +101,7 @@ class RiskTab extends StatelessWidget {
         if (active.isNotEmpty)
           SectionCard(
             title: 'Riesgos activos',
-            subtitle: 'Ordenados por exposicion, no por miedo',
+            subtitle: 'Ordenados por exposición, no por miedo',
             icon: Icons.warning_amber_rounded,
             accent: AppColors.danger,
             child: Column(
@@ -119,7 +119,7 @@ class RiskTab extends StatelessWidget {
         if (occurred.isNotEmpty)
           SectionCard(
             title: 'Riesgos materializados',
-            subtitle: 'Lo que ya paso y su costo',
+            subtitle: 'Lo que ya pasó y su costo',
             icon: Icons.report_problem_outlined,
             accent: AppColors.textSoft,
             child: Column(
@@ -158,7 +158,7 @@ class RiskTab extends StatelessWidget {
                                             '(${r.response.label})'
                                         : 'Periodo ${r.occurredPeriod} · '
                                             'nunca lo identificaste, el '
-                                            'impacto llego agravado',
+                                            'impacto llegó agravado',
                                     style: TextStyle(
                                       fontSize: 11.5,
                                       height: 1.3,
@@ -184,10 +184,10 @@ class RiskTab extends StatelessWidget {
     final bool? ok = await showDialog<bool>(
       context: context,
       builder: (BuildContext ctx) => AlertDialog(
-        title: const Text('Taller de identificacion de riesgos'),
+        title: const Text('Taller de identificación de riesgos'),
         content: Text(
           'Cuesta ${formatMoney(vm.workshopCost)} y revela hasta dos riesgos '
-          'que hoy estan fuera de tu registro.\n\n'
+          'que hoy están fuera de tu registro.\n\n'
           'Un riesgo identificado puede tratarse; uno desconocido solo puede '
           'sufrirse.',
           style: const TextStyle(fontSize: 13, height: 1.45),
@@ -331,11 +331,11 @@ class _RiskRow extends StatelessWidget {
                     formatPercent(risk.effectiveProbability)),
                 _chip('Impacto',
                     '${formatHours(risk.effectiveImpactHours)} + ${formatMoney(risk.effectiveImpactCost)}'),
-                _chip('Exposicion', formatMoney(risk.exposure(hourValue))),
+                _chip('Exposición', formatMoney(risk.exposure(hourValue))),
                 _chip(
                   'Ventana',
                   past
-                      ? 'ya paso'
+                      ? 'ya pasó'
                       : 'P${risk.window.first}-P${risk.window.last}',
                 ),
               ],

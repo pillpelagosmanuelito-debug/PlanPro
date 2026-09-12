@@ -13,11 +13,11 @@ import '../widgets/advisor_card.dart';
 import '../widgets/metric_tile.dart';
 import '../widgets/section_card.dart';
 
-/// Modulo 2: Planificacion.
+/// Módulo 2: Planificación.
 ///
-/// Aqui se decide casi todo el resultado: equipo, alcance comprometido, nivel
-/// de calidad, plazo y reserva. La pantalla muestra en todo momento la unica
-/// aritmetica que importa (alcance dividido entre capacidad) para que el
+/// Aquí se decide casi todo el resultado: equipo, alcance comprometido, nivel
+/// de calidad, plazo y reserva. La pantalla muestra en todo momento la única
+/// aritmética que importa (alcance dividido entre capacidad) para que el
 /// compromiso no sea un acto de fe.
 class PlanningScreen extends StatelessWidget {
   const PlanningScreen({super.key});
@@ -37,7 +37,7 @@ class PlanningScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('2. Planificacion'),
+        title: const Text('2. Planificación'),
         actions: <Widget>[
           IconButton(
             tooltip: 'Volver al acta',
@@ -89,9 +89,9 @@ class PlanningScreen extends StatelessWidget {
                     )),
                 const SizedBox(height: 6),
                 const NoteBox(
-                  text: 'Mas gente no es mas velocidad: cada integrante '
-                      'adicional resta un poco de eficiencia por coordinacion, '
-                      'y quien entra despues de arrancar tarda periodos en '
+                  text: 'Más gente no es más velocidad: cada integrante '
+                      'adicional resta un poco de eficiencia por coordinación, '
+                      'y quien entra después de arrancar tarda periodos en '
                       'rendir.',
                   icon: Icons.groups_2_outlined,
                   color: AppColors.planning,
@@ -138,7 +138,7 @@ class PlanningScreen extends StatelessWidget {
           ),
           SectionCard(
             title: 'Nivel de aseguramiento de calidad',
-            subtitle: 'Cuanta capacidad dedicas a evitar defectos',
+            subtitle: 'Cuánta capacidad dedicas a evitar defectos',
             icon: Icons.verified_outlined,
             accent: AppColors.info,
             child: Column(
@@ -172,8 +172,8 @@ class PlanningScreen extends StatelessWidget {
                 ),
                 Text(
                   'Consume ${formatPercent(state.qaLevel * vm.config.qaCapacityCost)} '
-                  'de la capacidad del equipo y reduce en la misma proporcion '
-                  'los defectos que llegaran a pruebas.',
+                  'de la capacidad del equipo y reduce en la misma proporción '
+                  'los defectos que llegarán a pruebas.',
                   style: const TextStyle(
                     fontSize: 12,
                     height: 1.4,
@@ -183,7 +183,7 @@ class PlanningScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 const NoteBox(
                   text: 'Corregir un defecto en pruebas cuesta cerca de ocho '
-                      'veces mas que haberlo evitado al construir. Bajar '
+                      'veces más que haberlo evitado al construir. Bajar '
                       'calidad no ahorra trabajo: lo aplaza y lo multiplica.',
                   icon: Icons.bug_report_outlined,
                 ),
@@ -191,8 +191,8 @@ class PlanningScreen extends StatelessWidget {
             ),
           ),
           SectionCard(
-            title: 'Enfoque y restriccion',
-            subtitle: 'Todavia puedes cambiarlos; despues quedan fijos',
+            title: 'Enfoque y restricción',
+            subtitle: 'Todavía puedes cambiarlos; después quedan fijos',
             icon: Icons.alt_route,
             accent: AppColors.initiation,
             child: Column(
@@ -234,8 +234,8 @@ class PlanningScreen extends StatelessWidget {
             ),
           ),
           SectionCard(
-            title: 'Linea base',
-            subtitle: 'La promesa formal contra la que te mediran',
+            title: 'Línea base',
+            subtitle: 'La promesa formal contra la que te medirán',
             icon: Icons.flag_outlined,
             accent: AppColors.closure,
             child: Column(
@@ -315,8 +315,8 @@ class PlanningScreen extends StatelessWidget {
           ),
           if (advice.isNotEmpty)
             SectionCard(
-              title: 'Asistente de direccion',
-              subtitle: 'Revision de tu plan antes de firmarlo',
+              title: 'Asistente de dirección',
+              subtitle: 'Revisión de tu plan antes de firmarlo',
               icon: Icons.support_agent,
               accent: AppColors.accent,
               child: Column(
@@ -335,7 +335,7 @@ class PlanningScreen extends StatelessWidget {
             icon: const Icon(Icons.handshake_outlined),
             label: Text(
               ready
-                  ? 'Comprometer linea base y ejecutar'
+                  ? 'Comprometer línea base y ejecutar'
                   : 'Necesitas al menos un integrante',
             ),
           ),
@@ -352,7 +352,7 @@ class PlanningScreen extends StatelessWidget {
     final bool? ok = await showDialog<bool>(
       context: context,
       builder: (BuildContext ctx) => AlertDialog(
-        title: const Text('Comprometer la linea base'),
+        title: const Text('Comprometer la línea base'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -368,7 +368,7 @@ class PlanningScreen extends StatelessWidget {
             if (risky) ...<Widget>[
               const SizedBox(height: 12),
               Text(
-                'La aritmetica dice que necesitarias '
+                'La aritmética dice que necesitarías '
                 '${needed.toStringAsFixed(1)} periodos con tu capacidad '
                 'actual, y eso sin contratiempos.',
                 style: const TextStyle(
@@ -381,8 +381,8 @@ class PlanningScreen extends StatelessWidget {
             ],
             const SizedBox(height: 12),
             const Text(
-              'Despues de firmar no podras cambiar de metodologia, y cualquier '
-              'ajuste de plazo o costo requerira una solicitud de cambio.',
+              'Después de firmar no podrás cambiar de metodología, y cualquier '
+              'ajuste de plazo o costo requerirá una solicitud de cambio.',
               style: TextStyle(
                 fontSize: 12,
                 height: 1.4,
@@ -522,7 +522,7 @@ class _BaselineSummary extends StatelessWidget {
           _row('Reserva de contingencia', formatMoney(reserve)),
           const Divider(height: 16),
           _row(
-            'Presupuesto hasta la conclusion',
+            'Presupuesto hasta la conclusión',
             formatMoney(total),
             strong: true,
             color: over ? AppColors.danger : AppColors.closure,

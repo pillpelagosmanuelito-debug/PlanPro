@@ -19,20 +19,20 @@ class RiskEvent {
   final double addedHours;
   final double addedCost;
 
-  /// Si el estudiante lo tenia en el registro antes de que ocurriera.
+  /// Si el estudiante lo tenía en el registro antes de que ocurriera.
   final bool wasIdentified;
 
   final String affectedPackage;
 
   String get narrative => wasIdentified
-      ? 'Ocurrio un riesgo que tenias identificado: ${risk.name}.'
-      : 'Ocurrio un riesgo que nunca registraste: ${risk.name}.';
+      ? 'Ocurrió un riesgo que tenías identificado: ${risk.name}.'
+      : 'Ocurrió un riesgo que nunca registraste: ${risk.name}.';
 }
 
 /// Dispara riesgos y aplica sus consecuencias.
 ///
 /// La probabilidad declarada corresponde a toda la ventana del riesgo, no a
-/// un periodo: el motor la reparte para que la exposicion total coincida con
+/// un periodo: el motor la reparte para que la exposición total coincida con
 /// lo que el estudiante ve en el registro.
 class RiskEngine {
   const RiskEngine({this.config = const ProjectConfig()});
@@ -88,8 +88,8 @@ class RiskEngine {
     return events;
   }
 
-  /// Elige el paquete que absorbe el impacto: uno pendiente de la fase mas
-  /// cargada, porque ahi es donde un problema duele de verdad.
+  /// Elige el paquete que absorbe el impacto: uno pendiente de la fase más
+  /// cargada, porque ahí es donde un problema duele de verdad.
   WorkPackage? _targetPackage(ProjectState state, math.Random random) {
     final List<WorkPackage> pending = state.includedPackages
         .where((WorkPackage p) => !p.isDone)
@@ -101,10 +101,10 @@ class RiskEngine {
     return pending[index];
   }
 
-  /// Taller de identificacion de riesgos.
+  /// Taller de identificación de riesgos.
   ///
   /// Cuesta horas del equipo y dinero, y revela riesgos que estaban fuera del
-  /// registro. Es la version practica de "los riesgos que no identificas no
+  /// registro. Es la versión práctica de "los riesgos que no identificas no
   /// desaparecen".
   List<RiskItem> runIdentificationWorkshop({
     required ProjectState state,

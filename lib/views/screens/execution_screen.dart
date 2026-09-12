@@ -14,11 +14,11 @@ import '../tabs/team_tab.dart';
 import '../widgets/change_request_dialog.dart';
 import '../widgets/period_result_sheet.dart';
 
-/// Modulo 3: Ejecucion.
+/// Módulo 3: Ejecución.
 ///
 /// Cada periodo el estudiante decide asignaciones, respuestas a riesgos,
-/// solicitudes de cambio y horas extra, y despues cierra el periodo para ver
-/// las consecuencias. La estructura de pestanias replica las areas de
+/// solicitudes de cambio y horas extra, y después cierra el periodo para ver
+/// las consecuencias. La estructura de pestañas replica las áreas de
 /// conocimiento que un director revisa cada semana.
 class ExecutionScreen extends StatefulWidget {
   const ExecutionScreen({super.key});
@@ -49,7 +49,7 @@ class _ExecutionScreenState extends State<ExecutionScreen> {
         builder: (BuildContext ctx) => AlertDialog(
           title: Text('$idle persona(s) sin trabajo valido'),
           content: const Text(
-            'Su capacidad se perdera completa y su costo se pagara igual. '
+            'Su capacidad se perderá completa y su costo se pagará igual. '
             'Puedes reasignarlas antes de cerrar el periodo.',
           ),
           actions: <Widget>[
@@ -196,11 +196,11 @@ class _ExecutionScreenState extends State<ExecutionScreen> {
         title: const Text('Cerrar el proyecto'),
         content: Text(
           complete
-              ? 'El alcance comprometido esta terminado. Se emitira el informe '
-                  'de cierre con tu evaluacion por competencias.'
-              : 'Todavia queda alcance comprometido sin entregar. Cerrar ahora '
+              ? 'El alcance comprometido está terminado. Se emitirá el informe '
+                  'de cierre con tu evaluación por competencias.'
+              : 'Todavía queda alcance comprometido sin entregar. Cerrar ahora '
                   'registra el proyecto como no completado, y eso pesa en la '
-                  'evaluacion.',
+                  'evaluación.',
           style: const TextStyle(fontSize: 13, height: 1.4),
         ),
         actions: <Widget>[

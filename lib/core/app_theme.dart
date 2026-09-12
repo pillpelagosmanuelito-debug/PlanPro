@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Paleta y tema de la aplicacion.
+/// Paleta y tema de la aplicación.
 ///
 /// Evita APIs que cambiaron de tipo entre versiones de Flutter (`cardTheme`,
 /// `Color.withValues`) para compilar igual en 3.19 y en versiones recientes.

@@ -9,9 +9,9 @@ import '../../viewmodels/project_viewmodel.dart';
 import '../app_scope.dart';
 import '../widgets/section_card.dart';
 
-/// Eleccion del caso, el enfoque y la restriccion prioritaria.
+/// Elección del caso, el enfoque y la restricción prioritaria.
 ///
-/// Las tres decisiones se toman juntas a proposito: elegir metodologia sin
+/// Las tres decisiones se toman juntas a propósito: elegir metodología sin
 /// mirar el caso es el error que este simulador quiere hacer visible.
 class CaseSelectionScreen extends StatefulWidget {
   const CaseSelectionScreen({super.key});
@@ -72,10 +72,10 @@ class _CaseSelectionScreenState extends State<CaseSelectionScreen> {
                       '${formatHours(c.totalEstimatedHours)} estimadas',
                   tags: <String>[
                     if (c.volatileRequirements)
-                      'Requisitos en discusion'
+                      'Requisitos en discusión'
                     else
                       'Alcance definido',
-                    if (c.regulated) 'Entorno regulado' else 'Sin supervision formal',
+                    if (c.regulated) 'Entorno regulado' else 'Sin supervisión formal',
                   ],
                 );
               }).toList(),
@@ -99,10 +99,10 @@ class _CaseSelectionScreenState extends State<CaseSelectionScreen> {
                 const SizedBox(height: 12),
                 NoteBox(
                   text: _case.volatileRequirements
-                      ? 'Este caso tiene requisitos abiertos: habra cambios '
-                          'durante la ejecucion, y cada enfoque los cobra a un '
+                      ? 'Este caso tiene requisitos abiertos: habrá cambios '
+                          'durante la ejecución, y cada enfoque los cobra a un '
                           'precio distinto.'
-                      : 'Este caso tiene el alcance definido y aprobado: aqui '
+                      : 'Este caso tiene el alcance definido y aprobado: aquí '
                           'la flexibilidad se paga sin comprar nada.',
                   icon: Icons.info_outline,
                 ),
@@ -110,8 +110,8 @@ class _CaseSelectionScreenState extends State<CaseSelectionScreen> {
             ),
           ),
           SectionCard(
-            title: '3. Enfoque de direccion',
-            subtitle: 'PMBOK, Scrum o una combinacion',
+            title: '3. Enfoque de dirección',
+            subtitle: 'PMBOK, Scrum o una combinación',
             icon: Icons.alt_route,
             accent: AppColors.planning,
             child: Column(
@@ -127,8 +127,8 @@ class _CaseSelectionScreenState extends State<CaseSelectionScreen> {
             ),
           ),
           SectionCard(
-            title: '4. Restriccion prioritaria',
-            subtitle: 'Que defiendes cuando algo tenga que ceder',
+            title: '4. Restricción prioritaria',
+            subtitle: 'Qué defiendes cuando algo tenga que ceder',
             icon: Icons.balance,
             accent: AppColors.risk,
             child: Column(
@@ -168,8 +168,8 @@ class _CaseSelectionScreenState extends State<CaseSelectionScreen> {
                 const SizedBox(height: 10),
                 const Text(
                   'Con la misma semilla, las duraciones reales ocultas y los '
-                  'riesgos son identicos para todos. Las diferencias de '
-                  'resultado seran solo de direccion.',
+                  'riesgos son idénticos para todos. Las diferencias de '
+                  'resultado serán solo de dirección.',
                   style: TextStyle(
                     fontSize: 12,
                     height: 1.4,
@@ -178,7 +178,7 @@ class _CaseSelectionScreenState extends State<CaseSelectionScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Si lo dejas vacio se usara una semilla aleatoria '
+                  'Si lo dejas vacío se usará una semilla aleatoria '
                   '(ej. ${ProjectGenerator.randomSeed()}).',
                   style: const TextStyle(
                     fontSize: 11.5,
@@ -197,7 +197,7 @@ class _CaseSelectionScreenState extends State<CaseSelectionScreen> {
           child: FilledButton.icon(
             onPressed: _start,
             icon: const Icon(Icons.assignment_turned_in_outlined),
-            label: const Text('Recibir el acta de constitucion'),
+            label: const Text('Recibir el acta de constitución'),
           ),
         ),
       ),

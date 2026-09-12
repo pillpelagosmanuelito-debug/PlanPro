@@ -11,12 +11,12 @@ import '../app_scope.dart';
 import '../widgets/change_request_dialog.dart';
 import '../widgets/section_card.dart';
 
-/// Estado del alcance: que paquete avanza, cual esta bloqueado y que cambios
+/// Estado del alcance: qué paquete avanza, cuál está bloqueado y qué cambios
 /// se aceptaron.
 ///
-/// El avance que se muestra es el que reporta el equipo sobre la estimacion
-/// original. Puede llegar al 100% de lo estimado y aun asi faltar trabajo:
-/// esa brecha es el corazon del ejercicio.
+/// El avance que se muestra es el que reporta el equipo sobre la estimación
+/// original. Puede llegar al 100% de lo estimado y aun así faltar trabajo:
+/// esa brecha es el corazón del ejercicio.
 class ScopeTab extends StatelessWidget {
   const ScopeTab({super.key});
 
@@ -229,7 +229,7 @@ class _ChangeRow extends StatelessWidget {
               const SizedBox(height: 3),
               Text(
                 pending
-                    ? 'Pendiente de decision · '
+                    ? 'Pendiente de decisión · '
                         '${formatHours(change.baseHours)} de trabajo adicional'
                     : change.decision.label,
                 style: TextStyle(

@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 18),
             SectionCard(
               title: 'Dirige un proyecto real',
-              subtitle: 'Cinco modulos, doce periodos, decisiones con consecuencia',
+              subtitle: 'Cinco módulos, doce periodos, decisiones con consecuencia',
               icon: Icons.account_tree_outlined,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SectionCard(
-              title: 'Como funciona',
+              title: 'Cómo funciona',
               subtitle: 'Las reglas del simulador, sin letra chica',
               icon: Icons.rule_folder_outlined,
               accent: AppColors.planning,
@@ -95,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     icon: const Icon(Icons.menu_book_outlined, size: 18),
-                    label: const Text('Guia de metodologias e indicadores'),
+                    label: const Text('Guía de metodologías e indicadores'),
                   ),
                 ],
               ),
@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
             SectionCard(
               title: 'Proyectos cerrados',
               subtitle: vm.finished.isEmpty
-                  ? 'Todavia no has cerrado ningun proyecto'
+                  ? 'Todavía no has cerrado ningún proyecto'
                   : '${vm.finished.length} partida(s) en tu historial',
               icon: Icons.history,
               accent: AppColors.closure,
@@ -112,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                 children: <Widget>[
                   const Text(
                     'Cada cierre guarda tu puntaje por competencia. Repetir el '
-                    'mismo caso con otra metodologia es la forma mas rapida de '
+                    'mismo caso con otra metodología es la forma más rápida de '
                     'ver que ninguna es mejor en abstracto.',
                     style: TextStyle(
                       fontSize: 12.5,
@@ -138,8 +138,8 @@ class HomeScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 22),
               child: Text(
-                'Simulador educativo. Los casos son ficticios y estan '
-                'inspirados en proyectos tipicos del contexto peruano.',
+                'Simulador educativo. Los casos son ficticios y están '
+                'inspirados en proyectos típicos del contexto peruano.',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 11, color: AppColors.textSoft),
               ),
@@ -206,7 +206,7 @@ class _Header extends StatelessWidget {
           const SizedBox(height: 14),
           Text(
             'Conocer PMBOK, Scrum o Agile no es lo mismo que decidir bajo '
-            'restricciones. Aqui decides.',
+            'restricciones. Aquí decides.',
             style: TextStyle(
               color: Colors.white.withOpacity(0.88),
               fontSize: 13,

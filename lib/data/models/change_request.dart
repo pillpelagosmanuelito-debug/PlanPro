@@ -1,4 +1,4 @@
-/// Decision del director frente a una solicitud de cambio.
+/// Decisión del director frente a una solicitud de cambio.
 enum ChangeDecision {
   pending,
   acceptedWithoutBaseline,
@@ -11,7 +11,7 @@ enum ChangeDecision {
       case ChangeDecision.pending:
         return 'Pendiente';
       case ChangeDecision.acceptedWithoutBaseline:
-        return 'Aceptada sin ajustar la linea base';
+        return 'Aceptada sin ajustar la línea base';
       case ChangeDecision.acceptedWithBaseline:
         return 'Aceptada renegociando plazo o costo';
       case ChangeDecision.tradedOff:
@@ -26,10 +26,10 @@ enum ChangeDecision {
       case ChangeDecision.pending:
         return 'El patrocinador espera respuesta.';
       case ChangeDecision.acceptedWithoutBaseline:
-        return 'El trabajo entra al proyecto pero la linea base no se mueve: '
-            'el atraso aparecera despues y sera tuyo.';
+        return 'El trabajo entra al proyecto pero la línea base no se mueve: '
+            'el atraso aparecerá después y será tuyo.';
       case ChangeDecision.acceptedWithBaseline:
-        return 'Se agrega el trabajo y se ajusta formalmente la linea base. '
+        return 'Se agrega el trabajo y se ajusta formalmente la línea base. '
             'Es lo correcto, aunque el patrocinador no lo celebre.';
       case ChangeDecision.tradedOff:
         return 'Entra el cambio y sale alcance opcional equivalente: el '
@@ -46,7 +46,7 @@ enum ChangeDecision {
         orElse: () => ChangeDecision.pending,
       );
 
-  /// Efecto sobre la satisfaccion del patrocinador si se toma esta decision.
+  /// Efecto sobre la satisfacción del patrocinador si se toma esta decisión.
   double satisfactionDelta() {
     switch (this) {
       case ChangeDecision.pending:
@@ -63,7 +63,7 @@ enum ChangeDecision {
   }
 }
 
-/// Solicitud de cambio de alcance durante la ejecucion.
+/// Solicitud de cambio de alcance durante la ejecución.
 class ChangeRequest {
   ChangeRequest({
     required this.id,
@@ -86,7 +86,7 @@ class ChangeRequest {
   final String requestedBy;
   final String description;
 
-  /// Horas base del cambio, antes del multiplicador de la metodologia.
+  /// Horas base del cambio, antes del multiplicador de la metodología.
   final double baseHours;
 
   /// Paquetes sobre los que recae el trabajo adicional.
@@ -94,12 +94,12 @@ class ChangeRequest {
 
   ChangeDecision decision;
 
-  /// Horas realmente agregadas al proyecto tras la decision.
+  /// Horas realmente agregadas al proyecto tras la decisión.
   double appliedHours;
 
   bool get isPending => decision == ChangeDecision.pending;
 
-  /// Efecto sobre la satisfaccion del patrocinador.
+  /// Efecto sobre la satisfacción del patrocinador.
   double satisfactionDelta() => decision.satisfactionDelta();
 
   Map<String, dynamic> toJson() => <String, dynamic>{

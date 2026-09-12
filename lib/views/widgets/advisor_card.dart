@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../../core/app_theme.dart';
 import '../../data/models/advisor_message.dart';
 
-/// Mensaje del asistente de direccion de proyectos.
+/// Mensaje del asistente de dirección de proyectos.
 ///
-/// Muestra siempre las tres partes: que observa, que significa y que hacer.
-/// Un consejo sin diagnostico no ensena a diagnosticar.
+/// Muestra siempre las tres partes: qué observa, qué significa y qué hacer.
+/// Un consejo sin diagnóstico no enseña a diagnosticar.
 class AdvisorCard extends StatelessWidget {
   const AdvisorCard({super.key, required this.message});
 

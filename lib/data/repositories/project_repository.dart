@@ -20,10 +20,10 @@ import '../services/pm_advisor.dart';
 import '../services/project_generator.dart';
 import '../services/risk_engine.dart';
 
-/// Punto unico de acceso al dominio.
+/// Punto único de acceso al dominio.
 ///
 /// Los ViewModels no conocen los motores ni la persistencia: hablan con este
-/// repositorio. Sustituir el almacenamiento local o afinar la simulacion no
+/// repositorio. Sustituir el almacenamiento local o afinar la simulación no
 /// obliga a tocar una sola pantalla.
 class ProjectRepository {
   ProjectRepository({
@@ -115,7 +115,7 @@ class ProjectRepository {
 
   /// Incorpora a alguien al equipo.
   ///
-  /// Antes de que empiece la ejecucion, el equipo arranca rodado; despues, la
+  /// Antes de que empiece la ejecución, el equipo arranca rodado; después, la
   /// persona entra en curva de aprendizaje, que es exactamente el costo que la
   /// ley de Brooks describe.
   TeamMember hire(ProjectState state, String roleId) {
@@ -143,13 +143,13 @@ class ProjectRepository {
     }
   }
 
-  /// Asignacion automatica del equipo sobre los paquetes habilitados.
+  /// Asignación automática del equipo sobre los paquetes habilitados.
   ///
-  /// No reparte por turnos: calcula cuantas personas necesita cada paquete
-  /// segun el trabajo que le queda y las coloca en orden de fase. Poner cinco
+  /// No reparte por turnos: calcula cuántas personas necesita cada paquete
+  /// según el trabajo que le queda y las coloca en orden de fase. Poner cinco
   /// personas en un paquete al que le faltan diez horas no lo termina antes,
-  /// solo deja cuatro sin nada que hacer. Es la version automatica de la
-  /// pregunta que el estudiante deberia hacerse cada periodo: cuanta gente
+  /// solo deja cuatro sin nada que hacer. Es la versión automática de la
+  /// pregunta que el estudiante debería hacerse cada periodo: cuánta gente
   /// cabe realmente en este trabajo.
   void autoAssign(ProjectState state) {
     final List<WorkPackage> available = state.availablePackages();
@@ -186,7 +186,7 @@ class ProjectRepository {
   }
 
   // ------------------------------------------------------------------
-  // Alcance y linea base
+  // Alcance y línea base
   // ------------------------------------------------------------------
 
   void toggleScope(ProjectState state, String packageId) {
@@ -210,7 +210,7 @@ class ProjectRepository {
     state.priority = priority;
   }
 
-  /// Compromete la linea base y abre la ejecucion.
+  /// Compromete la línea base y abre la ejecución.
   void commitBaseline({
     required ProjectState state,
     required int committedPeriods,
@@ -234,7 +234,7 @@ class ProjectRepository {
   // Riesgos
   // ------------------------------------------------------------------
 
-  /// Costo en dinero de un taller de identificacion.
+  /// Costo en dinero de un taller de identificación.
   double workshopCost(ProjectState state) =>
       state.hourValue(config) * 40 + 3000;
 
@@ -287,7 +287,7 @@ class ProjectRepository {
   }
 
   // ------------------------------------------------------------------
-  // Ejecucion
+  // Ejecución
   // ------------------------------------------------------------------
 
   PeriodResult runPeriod({
@@ -306,8 +306,8 @@ class ProjectRepository {
   /// Ejecuta un periodo sobre un estado suelto, sin partida asociada.
   ///
   /// Es la puerta que usan las pruebas para jugar simulaciones completas sin
-  /// interfaz ni almacenamiento, y con ella se verifica que la calibracion
-  /// siga siendo la que se documento.
+  /// interfaz ni almacenamiento, y con ella se verifica que la calibración
+  /// siga siendo la que se documentó.
   PeriodResult runPeriodOn({
     required ProjectState state,
     required int seed,

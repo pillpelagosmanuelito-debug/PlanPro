@@ -1,8 +1,8 @@
-/// Fotografia de gestion del valor ganado en un periodo.
+/// Fotografía de gestión del valor ganado en un periodo.
 ///
-/// Es el instrumental estandar de control de proyectos: con tres numeros
-/// (PV, EV, AC) se responde si el proyecto esta atrasado, sobrecostado, o
-/// ambas cosas, y cuanto costara terminarlo si nada cambia.
+/// Es el instrumental estándar de control de proyectos: con tres números
+/// (PV, EV, AC) se responde si el proyecto está atrasado, sobrecostado, o
+/// ambas cosas, y cuánto costará terminarlo si nada cambia.
 class EvmSnapshot {
   const EvmSnapshot({
     required this.period,
@@ -14,7 +14,7 @@ class EvmSnapshot {
 
   final int period;
 
-  /// Valor planificado: cuanto deberia haberse ejecutado a la fecha.
+  /// Valor planificado: cuanto debería haberse ejecutado a la fecha.
   final double plannedValue;
 
   /// Valor ganado: cuanto vale lo realmente terminado.
@@ -25,29 +25,29 @@ class EvmSnapshot {
 
   final double budgetAtCompletion;
 
-  /// Variacion de cronograma en dinero.
+  /// Variación de cronograma en dinero.
   double get scheduleVariance => earnedValue - plannedValue;
 
-  /// Variacion de costo en dinero.
+  /// Variación de costo en dinero.
   double get costVariance => earnedValue - actualCost;
 
-  /// Indice de desempenio del cronograma.
+  /// Indice de desempeño del cronograma.
   double get spi => plannedValue <= 0 ? 1.0 : earnedValue / plannedValue;
 
-  /// Indice de desempenio del costo.
+  /// Indice de desempeño del costo.
   double get cpi => actualCost <= 0 ? 1.0 : earnedValue / actualCost;
 
-  /// Estimacion a la conclusion, asumiendo que el desempenio se mantiene.
+  /// Estimación a la conclusión, asumiendo que el desempeño se mantiene.
   double get estimateAtCompletion =>
       cpi <= 0 ? budgetAtCompletion : budgetAtCompletion / cpi;
 
-  /// Estimacion para terminar.
+  /// Estimación para terminar.
   double get estimateToComplete => estimateAtCompletion - actualCost;
 
-  /// Variacion a la conclusion: cuanto se saldra del presupuesto.
+  /// Variación a la conclusión: cuanto se saldra del presupuesto.
   double get varianceAtCompletion => budgetAtCompletion - estimateAtCompletion;
 
-  /// Indice de desempenio del trabajo por completar.
+  /// Indice de desempeño del trabajo por completar.
   double get tcpi {
     final double remainingWork = budgetAtCompletion - earnedValue;
     final double remainingFunds = budgetAtCompletion - actualCost;
@@ -55,11 +55,11 @@ class EvmSnapshot {
     return remainingWork / remainingFunds;
   }
 
-  /// Avance fisico expresado como fraccion del presupuesto.
+  /// Avance físico expresado como fracción del presupuesto.
   double get progress =>
       budgetAtCompletion <= 0 ? 0.0 : earnedValue / budgetAtCompletion;
 
-  /// Lectura en lenguaje de direccion de proyectos.
+  /// Lectura en lenguaje de dirección de proyectos.
   String get reading {
     final bool late = spi < 0.95;
     final bool over = cpi < 0.95;

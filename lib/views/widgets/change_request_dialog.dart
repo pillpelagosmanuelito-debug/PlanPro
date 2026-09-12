@@ -8,11 +8,11 @@ import '../../data/models/work_package.dart';
 import '../../viewmodels/project_viewmodel.dart';
 import '../app_scope.dart';
 
-/// Decision sobre una solicitud de cambio.
+/// Decisión sobre una solicitud de cambio.
 ///
-/// Las cuatro opciones son las que existen en la practica, y ninguna es
-/// gratis. La opcion que mas contenta al patrocinador (aceptar sin mover la
-/// linea base) es tambien la que peor termina: esa tension es el aprendizaje.
+/// Las cuatro opciones son las que existen en la práctica, y ninguna es
+/// gratis. La opción que más contenta al patrocinador (aceptar sin mover la
+/// línea base) es también la que peor termina: esa tensión es el aprendizaje.
 class ChangeRequestDialog extends StatelessWidget {
   const ChangeRequestDialog({super.key, required this.change});
 
@@ -84,7 +84,7 @@ class ChangeRequestDialog extends StatelessWidget {
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Decidir despues'),
+          child: const Text('Decidir después'),
         ),
       ],
     );

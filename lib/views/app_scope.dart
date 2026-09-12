@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../viewmodels/project_viewmodel.dart';
 
-/// Inyeccion del ViewModel en el arbol de widgets.
+/// Inyección del ViewModel en el árbol de widgets.
 ///
 /// Se resuelve con `InheritedNotifier` en lugar de un paquete de estado para
 /// mantener el MVP con una sola dependencia externa. Cualquier vista obtiene
@@ -18,15 +18,15 @@ class AppScope extends InheritedNotifier<ProjectViewModel> {
   static ProjectViewModel of(BuildContext context) {
     final AppScope? scope =
         context.dependOnInheritedWidgetOfExactType<AppScope>();
-    assert(scope != null, 'AppScope no encontrado en el arbol de widgets.');
+    assert(scope != null, 'AppScope no encontrado en el árbol de widgets.');
     return scope!.notifier!;
   }
 
-  /// Acceso sin suscripcion, para manejadores de eventos.
+  /// Acceso sin suscripción, para manejadores de eventos.
   static ProjectViewModel read(BuildContext context) {
     final AppScope? scope =
         context.getInheritedWidgetOfExactType<AppScope>();
-    assert(scope != null, 'AppScope no encontrado en el arbol de widgets.');
+    assert(scope != null, 'AppScope no encontrado en el árbol de widgets.');
     return scope!.notifier!;
   }
 }

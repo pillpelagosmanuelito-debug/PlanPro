@@ -1,6 +1,6 @@
-/// Enfoques de direccion de proyectos disponibles.
+/// Enfoques de dirección de proyectos disponibles.
 ///
-/// La eleccion no es decorativa: cambia el retrabajo por cambios de alcance,
+/// La elección no es decorativa: cambia el retrabajo por cambios de alcance,
 /// el costo de cada solicitud de cambio, la carga de gobernanza y el nivel de
 /// cumplimiento documental que se exige en el cierre.
 enum Methodology {
@@ -13,9 +13,9 @@ enum Methodology {
       case Methodology.predictive:
         return 'Predictivo (PMBOK)';
       case Methodology.agile:
-        return 'Agil (Scrum)';
+        return 'Ágil (Scrum)';
       case Methodology.hybrid:
-        return 'Hibrido';
+        return 'Híbrido';
     }
   }
 
@@ -24,25 +24,25 @@ enum Methodology {
       case Methodology.predictive:
         return 'Predictivo';
       case Methodology.agile:
-        return 'Agil';
+        return 'Ágil';
       case Methodology.hybrid:
-        return 'Hibrido';
+        return 'Híbrido';
     }
   }
 
   String get description {
     switch (this) {
       case Methodology.predictive:
-        return 'Alcance definido al inicio, linea base formal y control de '
-            'cambios estricto. Cada cambio obliga a rehacer analisis, diseno '
-            'y documentacion aprobada.';
+        return 'Alcance definido al inicio, línea base formal y control de '
+            'cambios estricto. Cada cambio obliga a rehacer análisis, diseño '
+            'y documentación aprobada.';
       case Methodology.agile:
         return 'Entregas incrementales por sprints, alcance que se ajusta con '
             'el cliente. Absorbe cambios a bajo costo, pero produce menos '
-            'documentacion formal.';
+            'documentación formal.';
       case Methodology.hybrid:
-        return 'Fases y linea base para la parte estable, iteraciones para la '
-            'parte incierta. Cuesta algo de coordinacion adicional y evita '
+        return 'Fases y línea base para la parte estable, iteraciones para la '
+            'parte incierta. Cuesta algo de coordinación adicional y evita '
             'los extremos de los otros dos.';
     }
   }
@@ -53,22 +53,22 @@ enum Methodology {
         return 'Requisitos estables y entorno regulado, donde el costo de '
             'documentar es menor que el de improvisar.';
       case Methodology.agile:
-        return 'Requisitos volatiles y cliente disponible, donde el costo de '
+        return 'Requisitos volátiles y cliente disponible, donde el costo de '
             'equivocarse temprano es bajo.';
       case Methodology.hybrid:
         return 'Proyectos con una parte regulada y otra incierta, que es el '
-            'caso mas frecuente en la practica.';
+            'caso más frecuente en la práctica.';
     }
   }
 
-  /// Retrabajo agregado al trabajo real segun la volatilidad del proyecto.
+  /// Retrabajo agregado al trabajo real según la volatilidad del proyecto.
   double reworkFactor({required bool volatileRequirements}) {
     switch (this) {
       case Methodology.predictive:
         return volatileRequirements ? 0.30 : 0.06;
       case Methodology.agile:
-        // En un proyecto estable, la ceremonia agil no compra flexibilidad
-        // que nadie necesita: solo agrega coordinacion.
+        // En un proyecto estable, la ceremonia ágil no compra flexibilidad
+        // que nadie necesita: solo agrega coordinación.
         return volatileRequirements ? 0.10 : 0.14;
       case Methodology.hybrid:
         return volatileRequirements ? 0.17 : 0.09;
@@ -117,9 +117,9 @@ enum Methodology {
       );
 }
 
-/// Restriccion que el patrocinador declara como prioritaria.
+/// Restricción que el patrocinador declara como prioritaria.
 ///
-/// Es la traduccion practica del triangulo alcance-tiempo-costo: algo tiene
+/// Es la traducción práctica del triángulo alcance-tiempo-costo: algo tiene
 /// que ceder, y decidir que cede antes de empezar es parte del trabajo.
 enum ConstraintPriority {
   scope,
@@ -145,7 +145,7 @@ enum ConstraintPriority {
         return 'La fecha manda: si algo cede, cede el alcance opcional.';
       case ConstraintPriority.cost:
         return 'El presupuesto manda: no se contrata ni se pagan horas extra '
-            'sin justificacion.';
+            'sin justificación.';
     }
   }
 

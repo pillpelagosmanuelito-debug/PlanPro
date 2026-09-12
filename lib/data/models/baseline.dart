@@ -1,8 +1,8 @@
-/// Linea base comprometida al terminar la planificacion.
+/// Línea base comprometida al terminar la planificación.
 ///
-/// Es la promesa contra la que se mide todo lo demas: el valor planificado,
-/// los indices de desempenio y la evaluacion final. Cambiarla despues exige
-/// una solicitud de cambio aprobada, igual que en la practica.
+/// Es la promesa contra la que se mide todo lo demás: el valor planificado,
+/// los índices de desempeño y la evaluación final. Cambiarla después exige
+/// una solicitud de cambio aprobada, igual que en la práctica.
 class Baseline {
   const Baseline({
     required this.committedPeriods,
@@ -32,13 +32,13 @@ class Baseline {
 
   final int teamSize;
 
-  /// Periodo en que se comprometio.
+  /// Periodo en que se comprometió.
   final int committedAtPeriod;
 
-  /// Veces que la linea base fue renegociada formalmente.
+  /// Veces que la línea base fue renegociada formalmente.
   final int revisions;
 
-  /// Presupuesto hasta la conclusion.
+  /// Presupuesto hasta la conclusión.
   double get budgetAtCompletion => plannedCost + contingencyReserve;
 
   Baseline copyWith({

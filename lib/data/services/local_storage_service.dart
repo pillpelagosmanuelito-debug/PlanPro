@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// Persistencia local en JSON.
 ///
-/// Unica dependencia externa del proyecto. Se aisla detras de esta clase para
+/// Única dependencia externa del proyecto. Se aisla detrás de esta clase para
 /// que cambiar a SQLite o a un backend remoto no obligue a tocar el dominio.
 class LocalStorageService {
   static const String _sessionKey = 'pms_current_session';

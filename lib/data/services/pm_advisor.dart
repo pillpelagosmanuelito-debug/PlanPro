@@ -15,20 +15,20 @@ import '../models/team_member.dart';
 import '../models/work_package.dart';
 import 'evm_calculator.dart';
 
-/// Asistente de direccion de proyectos.
+/// Asistente de dirección de proyectos.
 ///
 /// Es un sistema experto basado en reglas, no un modelo generativo. La
-/// decision es deliberada y tiene tres razones pedagogicas:
+/// decisión es deliberada y tiene tres razones pedagógicas:
 ///
 /// 1. **Auditabilidad.** Cada consejo se puede rastrear hasta una regla con
 ///    nombre, umbral y fundamento. Un estudiante puede discutir la regla; no
 ///    puede discutir una caja negra.
-/// 2. **Honestidad epistemica.** El asistente lee exactamente lo que lee el
+/// 2. **Honestidad epistémica.** El asistente lee exactamente lo que lee el
 ///    estudiante: estimaciones, avance reportado e indicadores. Nunca consulta
-///    la duracion real oculta ni los riesgos que el estudiante no identifico.
-///    Si el asistente supiera el futuro, el simulador dejaria de ensenar a
-///    decidir con informacion incompleta, que es justamente la competencia.
-/// 3. **Disponibilidad.** Funciona sin conexion, sin costo por consulta y con
+///    la duración real oculta ni los riesgos que el estudiante no identificó.
+///    Si el asistente supiera el futuro, el simulador dejaría de enseñar a
+///    decidir con información incompleta, que es justamente la competencia.
+/// 3. **Disponibilidad.** Funciona sin conexión, sin costo por consulta y con
 ///    latencia cero, condiciones necesarias para un aula peruana promedio.
 class PmAdvisor {
   const PmAdvisor({
@@ -39,8 +39,8 @@ class PmAdvisor {
   final ProjectConfig config;
   final EvmCalculator evm;
 
-  /// Consejos para la etapa de planificacion, antes de comprometer la linea
-  /// base. Aqui es donde un proyecto se gana o se pierde.
+  /// Consejos para la etapa de planificación, antes de comprometer la línea
+  /// base. Aquí es donde un proyecto se gana o se pierde.
   List<AdvisorMessage> planningAdvice({
     required ProjectState state,
     required int committedPeriods,
@@ -56,13 +56,13 @@ class PmAdvisor {
         ruleId: 'plan_no_team',
         area: AdvisorArea.resources,
         severity: AdvisorSeverity.critical,
-        title: 'Todavia no tienes equipo',
+        title: 'Todavía no tienes equipo',
         diagnosis:
-            'Sin integrantes no hay capacidad y el proyecto no avanzara ni '
-            'una hora, por buena que sea la planificacion.',
+            'Sin integrantes no hay capacidad y el proyecto no avanzará ni '
+            'una hora, por buena que sea la planificación.',
         recommendation:
-            'Arma el equipo antes de comprometer la linea base: es la decision '
-            'que determina cuanto trabajo cabe en cada periodo.',
+            'Arma el equipo antes de comprometer la línea base: es la decisión '
+            'que determina cuánto trabajo cabe en cada periodo.',
       ));
       return out;
     }
@@ -76,12 +76,12 @@ class PmAdvisor {
         title: 'El plazo que quieres comprometer no cabe',
         diagnosis:
             'Con ${formatHours(scope)} de alcance y ${formatHours(capacity)} '
-            'de capacidad por periodo, el trabajo tomaria '
-            '${periodsNeeded.toStringAsFixed(1)} periodos aun sin ningun '
+            'de capacidad por periodo, el trabajo tomaría '
+            '${periodsNeeded.toStringAsFixed(1)} periodos aún sin ningún '
             'contratiempo. Y las estimaciones del equipo son optimistas.',
         recommendation:
             'Antes de firmar: agranda el equipo, saca alcance opcional o '
-            'comprometete a un plazo mayor. Prometer una fecha imposible no '
+            'comprométete a un plazo mayor. Prometer una fecha imposible no '
             'la vuelve posible.',
         evidence:
             'Necesario ${periodsNeeded.toStringAsFixed(1)} periodos vs '
@@ -94,12 +94,12 @@ class PmAdvisor {
         severity: AdvisorSeverity.insight,
         title: 'Holgura amplia, presupuesto caro',
         diagnosis:
-            'El alcance cabria en ${periodsNeeded.toStringAsFixed(1)} '
+            'El alcance cabría en ${periodsNeeded.toStringAsFixed(1)} '
             'periodos, bastante menos que los $committedPeriods que piensas '
             'comprometer. Cada periodo comprometido cuesta planilla.',
         recommendation:
             'Un plazo holgado protege, pero pagas equipo todo ese tiempo. '
-            'Evalua si conviene un equipo menor o un compromiso mas corto.',
+            'Evalúa si conviene un equipo menor o un compromiso más corto.',
       ));
     }
 
@@ -108,11 +108,11 @@ class PmAdvisor {
         ruleId: 'plan_no_reserve',
         area: AdvisorArea.risk,
         severity: AdvisorSeverity.warning,
-        title: 'Linea base sin reserva de contingencia',
+        title: 'Línea base sin reserva de contingencia',
         diagnosis:
-            'Estas comprometiendo el presupuesto exacto del plan. Cuando '
-            'ocurra el primer riesgo (y ocurrira), cada sol adicional sera '
-            'un sobrecosto frente a la linea base.',
+            'Estás comprometiendo el presupuesto exacto del plan. Cuando '
+            'ocurra el primer riesgo (y ocurrirá), cada sol adicional será '
+            'un sobrecosto frente a la línea base.',
         recommendation:
             'Reserva entre 8% y 15% para los riesgos identificados. La '
             'reserva no es desconfianza: es el precio de la incertidumbre.',
@@ -128,14 +128,14 @@ class PmAdvisor {
         ruleId: 'plan_reserve_gap',
         area: AdvisorArea.risk,
         severity: AdvisorSeverity.warning,
-        title: 'La reserva no cubre la exposicion conocida',
+        title: 'La reserva no cubre la exposición conocida',
         diagnosis:
-            'Solo con los riesgos que ya identificaste, la exposicion '
+            'Solo con los riesgos que ya identificaste, la exposición '
             'esperada es ${formatMoney(exposure)} y la reserva propuesta es '
             '${formatMoney(reserve)}.',
         recommendation:
-            'Sube la reserva o trata los riesgos de mayor exposicion antes de '
-            'comprometerte. Y recuerda que aun hay riesgos sin identificar.',
+            'Sube la reserva o trata los riesgos de mayor exposición antes de '
+            'comprometerte. Y recuerda que aún hay riesgos sin identificar.',
       ));
     }
 
@@ -153,17 +153,17 @@ class PmAdvisor {
         diagnosis:
             'Tienes $juniors juniors. Cuestan poco por periodo, pero '
             'necesitan tres periodos para rendir de verdad y mientras tanto '
-            'consumen tiempo de los demas.',
+            'consumen tiempo de los demás.',
         recommendation:
             'En proyectos cortos la mano de obra barata sale cara. Mezcla '
-            'perfiles: alguien con criterio tecnico acelera a todo el equipo.',
+            'perfiles: alguien con criterio técnico acelera a todo el equipo.',
       ));
     }
 
     return out;
   }
 
-  /// Consejos durante la ejecucion.
+  /// Consejos durante la ejecución.
   List<AdvisorMessage> execute({
     required ProjectState state,
     PeriodResult? last,
@@ -190,13 +190,13 @@ class PmAdvisor {
           ruleId: 'all_good',
           area: AdvisorArea.schedule,
           severity: AdvisorSeverity.positive,
-          title: 'El proyecto esta bajo control',
+          title: 'El proyecto está bajo control',
           diagnosis:
               'SPI ${formatIndex(snap.spi)} y CPI ${formatIndex(snap.cpi)}: '
               'avanzas al ritmo comprometido y dentro del costo previsto.',
           recommendation:
               'Este es el momento de mirar hacia adelante, no de relajarse: '
-              'revisa los riesgos de los proximos periodos mientras tienes '
+              'revisa los riesgos de los próximos periodos mientras tienes '
               'margen para actuar.',
         ));
       }
@@ -224,16 +224,16 @@ class PmAdvisor {
         ruleId: 'spi_critical',
         area: AdvisorArea.schedule,
         severity: AdvisorSeverity.critical,
-        title: 'Atraso significativo frente a la linea base',
+        title: 'Atraso significativo frente a la línea base',
         diagnosis:
             'El SPI es ${formatIndex(snap.spi)}: has ganado '
-            '${formatMoney(snap.earnedValue)} de valor cuando el plan pedia '
+            '${formatMoney(snap.earnedValue)} de valor cuando el plan pedía '
             '${formatMoney(snap.plannedValue)}. El atraso no se recupera '
             'solo.',
         recommendation:
-            'Elige una palanca y usala ahora: horas extra por pocos periodos, '
+            'Elige una palanca y úsala ahora: horas extra por pocos periodos, '
             'sacar alcance opcional, o renegociar la fecha con el '
-            'patrocinador. Esperar un periodo mas encarece las tres.',
+            'patrocinador. Esperar un periodo más encarece las tres.',
         evidence: 'SV ${formatMoney(snap.scheduleVariance)}',
       ));
     } else if (snap.spi < 0.97) {
@@ -243,11 +243,11 @@ class PmAdvisor {
         severity: AdvisorSeverity.warning,
         title: 'Atraso incipiente',
         diagnosis:
-            'SPI ${formatIndex(snap.spi)}. Todavia es un desvio pequenio, '
-            'del tamanio que se corrige sin drama si actuas este periodo.',
+            'SPI ${formatIndex(snap.spi)}. Todavía es un desvío pequeño, '
+            'del tamaño que se corrige sin drama si actúas este periodo.',
         recommendation:
             'Concentra la capacidad en la fase que marca el ritmo antes de '
-            'que el desvio se acumule.',
+            'que el desvío se acumule.',
       ));
     }
 
@@ -258,14 +258,14 @@ class PmAdvisor {
         ruleId: 'forecast_late',
         area: AdvisorArea.schedule,
         severity: AdvisorSeverity.warning,
-        title: 'La proyeccion supera la fecha comprometida',
+        title: 'La proyección supera la fecha comprometida',
         diagnosis:
-            'Al ritmo observado, el proyecto terminaria alrededor del periodo '
+            'Al ritmo observado, el proyecto terminaría alrededor del periodo '
             '${finish.toStringAsFixed(1)}, contra el periodo '
             '${baseline.committedPeriods} comprometido.',
         recommendation:
-            'Una proyeccion no es una profecia: es el resultado de seguir '
-            'igual. Cambia algo (capacidad, alcance o metodo) o avisa la '
+            'Una proyección no es una profecía: es el resultado de seguir '
+            'igual. Cambia algo (capacidad, alcance o método) o avisa la '
             'nueva fecha con tiempo.',
       ));
     }
@@ -281,11 +281,11 @@ class PmAdvisor {
           ruleId: 'critical_path',
           area: AdvisorArea.schedule,
           severity: AdvisorSeverity.insight,
-          title: 'El cuello de botella esta en ${critical.label}',
+          title: 'El cuello de botella está en ${critical.label}',
           diagnosis:
               '${critical.label} concentra el trabajo pendiente y define '
               'cuando termina el proyecto, pero ${elsewhere.length} de '
-              '${state.team.length} personas estan asignadas a otras fases.',
+              '${state.team.length} personas están asignadas a otras fases.',
           recommendation:
               'Avanzar donde hay holgura no adelanta la fecha final. Mueve '
               'capacidad al cuello de botella aunque parezca desordenado.',
@@ -317,11 +317,11 @@ class PmAdvisor {
         diagnosis:
             'CPI ${formatIndex(snap.cpi)}: por cada sol invertido obtienes '
             '${formatIndex(snap.cpi)} soles de valor. Proyectado a la '
-            'conclusion, el proyecto costaria '
+            'conclusión, el proyecto costaría '
             '${formatMoney(snap.estimateAtCompletion)}.',
         recommendation:
-            'Revisa donde se va la capacidad: horas perdidas por asignaciones '
-            'invalidas, gente en curva de aprendizaje u horas extra caras. '
+            'Revisa dónde se va la capacidad: horas perdidas por asignaciones '
+            'inválidas, gente en curva de aprendizaje u horas extra caras. '
             'El sobrecosto rara vez viene del precio; viene del desperdicio.',
         evidence: 'EAC ${formatMoney(snap.estimateAtCompletion)}',
       ));
@@ -332,9 +332,9 @@ class PmAdvisor {
         ruleId: 'eac_over_ceiling',
         area: AdvisorArea.cost,
         severity: AdvisorSeverity.critical,
-        title: 'La proyeccion excede el techo del patrocinador',
+        title: 'La proyección excede el techo del patrocinador',
         diagnosis:
-            'La estimacion a la conclusion es '
+            'La estimación a la conclusión es '
             '${formatMoney(snap.estimateAtCompletion)} y el techo autorizado '
             'es ${formatMoney(c.budgetCeiling)}.',
         recommendation:
@@ -350,13 +350,13 @@ class PmAdvisor {
         ruleId: 'tcpi_unrealistic',
         area: AdvisorArea.cost,
         severity: AdvisorSeverity.warning,
-        title: 'Terminar dentro del presupuesto exige un desempenio irreal',
+        title: 'Terminar dentro del presupuesto exige un desempeño irreal',
         diagnosis:
-            'El TCPI es ${formatIndex(tcpi)}: para cerrar dentro de la linea '
-            'base tendrias que rendir un ${((tcpi / math.max(snap.cpi, 0.01) - 1) * 100).toStringAsFixed(0)}% '
+            'El TCPI es ${formatIndex(tcpi)}: para cerrar dentro de la línea '
+            'base tendrías que rendir un ${((tcpi / math.max(snap.cpi, 0.01) - 1) * 100).toStringAsFixed(0)}% '
             'mejor de lo que has rendido hasta hoy.',
         recommendation:
-            'Nadie mejora asi de golpe sin cambiar algo. Ajusta la linea base '
+            'Nadie mejora así de golpe sin cambiar algo. Ajusta la línea base '
             'formalmente o reduce el trabajo pendiente.',
       ));
     }
@@ -385,12 +385,12 @@ class PmAdvisor {
         severity: AdvisorSeverity.critical,
         title: '${unassigned.length} persona(s) sin trabajo valido',
         diagnosis:
-            'Tienen asignacion vacia, un paquete ya terminado o una fase '
-            'todavia bloqueada. Su capacidad se pierde completa y su costo se '
+            'Tienen asignación vacía, un paquete ya terminado o una fase '
+            'todavía bloqueada. Su capacidad se pierde completa y su costo se '
             'paga igual.',
         recommendation:
-            'Reasignalas a un paquete habilitado antes de cerrar el periodo. '
-            'Pagar capacidad ociosa es la forma mas silenciosa de perder un '
+            'Reasígnalas a un paquete habilitado antes de cerrar el periodo. '
+            'Pagar capacidad ociosa es la forma más silenciosa de perder un '
             'presupuesto.',
         evidence: unassigned.map((TeamMember m) => m.name).join(', '),
       ));
@@ -403,11 +403,11 @@ class PmAdvisor {
         severity: AdvisorSeverity.warning,
         title: 'Se perdieron ${formatHours(last.wastedHours)} el periodo pasado',
         diagnosis:
-            'La utilizacion fue ${formatPercent(last.utilization)}. Esas '
+            'La utilización fue ${formatPercent(last.utilization)}. Esas '
             'horas se pagaron y no produjeron avance.',
         recommendation:
             'Revisa las asignaciones al inicio de cada periodo, no al final. '
-            'Es el control mas barato que existe.',
+            'Es el control más barato que existe.',
       ));
     }
 
@@ -417,14 +417,14 @@ class PmAdvisor {
         ruleId: 'team_too_large',
         area: AdvisorArea.resources,
         severity: AdvisorSeverity.insight,
-        title: 'El equipo perdio ${formatPercent(1 - efficiency)} por coordinacion',
+        title: 'El equipo perdió ${formatPercent(1 - efficiency)} por coordinación',
         diagnosis:
-            'Con ${state.team.length} personas, la carga de comunicacion se '
+            'Con ${state.team.length} personas, la carga de comunicación se '
             'come una parte importante de la capacidad nominal. Los canales '
-            'de comunicacion crecen mucho mas rapido que el equipo.',
+            'de comunicación crecen mucho más rápido que el equipo.',
         recommendation:
             'Antes de contratar otra persona, comprueba que la anterior ya '
-            'esta rindiendo. Un equipo grande no es un equipo rapido.',
+            'está rindiendo. Un equipo grande no es un equipo rápido.',
       ));
     }
 
@@ -439,10 +439,10 @@ class PmAdvisor {
         diagnosis:
             'Hay ${newcomers.length} integrante(s) en curva de aprendizaje '
             'faltando pocos periodos. Rinden parcialmente y consumen tiempo '
-            'de quienes ya producian.',
+            'de quienes ya producían.',
         recommendation:
-            'Agregar personas a un proyecto atrasado lo atrasa mas. Si '
-            'necesitas velocidad ahora, es mas barato recortar alcance.',
+            'Agregar personas a un proyecto atrasado lo atrasa más. Si '
+            'necesitas velocidad ahora, es más barato recortar alcance.',
       ));
     }
 
@@ -451,14 +451,14 @@ class PmAdvisor {
         ruleId: 'fatigue',
         area: AdvisorArea.resources,
         severity: AdvisorSeverity.warning,
-        title: 'El equipo esta desgastado',
+        title: 'El equipo está desgastado',
         diagnosis:
             'La fatiga acumulada por horas extra ya resta '
             '${formatPercent(state.fatigue)} de capacidad, y no se recupera '
             'en un periodo.',
         recommendation:
-            'Las horas extra son un prestamo con interes: sirven para un '
-            'empujon corto, no como regimen. Dale al equipo un periodo '
+            'Las horas extra son un préstamo con interés: sirven para un '
+            'empujón corto, no como régimen. Dale al equipo un periodo '
             'normal.',
       ));
     }
@@ -490,13 +490,13 @@ class PmAdvisor {
         severity: AdvisorSeverity.warning,
         title: '${untreated.length} riesgo(s) identificado(s) sin respuesta',
         diagnosis:
-            'El de mayor exposicion es "${top.name}", con '
+            'El de mayor exposición es "${top.name}", con '
             '${formatMoney(top.exposure(hourValue))} esperados. Identificar '
-            'un riesgo y no decidir que hacer con el no cambia nada.',
+            'un riesgo y no decidir qué hacer con él no cambia nada.',
         recommendation:
-            'Elige una respuesta explicita: mitigar, transferir, evitar o '
-            'aceptar con reserva. Aceptar es valido; ignorar no lo es.',
-        evidence: 'Senial temprana: ${top.trigger}',
+            'Elige una respuesta explícita: mitigar, transferir, evitar o '
+            'aceptar con reserva. Aceptar es válido; ignorar no lo es.',
+        evidence: 'Señal temprana: ${top.trigger}',
       ));
     }
 
@@ -505,14 +505,14 @@ class PmAdvisor {
         ruleId: 'risk_no_workshop',
         area: AdvisorArea.risk,
         severity: AdvisorSeverity.warning,
-        title: 'Nunca hiciste un analisis de riesgos',
+        title: 'Nunca hiciste un análisis de riesgos',
         diagnosis:
             'Tu registro solo contiene los riesgos que el acta hizo evidentes. '
-            'Los que no estan en el registro no dejan de existir: ocurren sin '
-            'aviso y con peor impacto porque nadie preparo la respuesta.',
+            'Los que no están en el registro no dejan de existir: ocurren sin '
+            'aviso y con peor impacto porque nadie preparó la respuesta.',
         recommendation:
-            'Un taller de identificacion cuesta horas y dinero, y es de las '
-            'inversiones mas rentables del proyecto.',
+            'Un taller de identificación cuesta horas y dinero, y es de las '
+            'inversiones más rentables del proyecto.',
       ));
     }
 
@@ -524,13 +524,13 @@ class PmAdvisor {
         ruleId: 'risk_reserve_gap',
         area: AdvisorArea.risk,
         severity: AdvisorSeverity.critical,
-        title: 'La reserva ya no cubre la exposicion',
+        title: 'La reserva ya no cubre la exposición',
         diagnosis:
-            'Exposicion conocida ${formatMoney(exposure)} contra '
+            'Exposición conocida ${formatMoney(exposure)} contra '
             '${formatMoney(reserveLeft)} de reserva disponible.',
         recommendation:
-            'Trata los riesgos de mayor exposicion o pide ampliacion de '
-            'reserva ahora, mientras la conversacion sigue siendo preventiva.',
+            'Trata los riesgos de mayor exposición o pide ampliación de '
+            'reserva ahora, mientras la conversación sigue siendo preventiva.',
       ));
     }
 
@@ -556,10 +556,10 @@ class PmAdvisor {
         title: 'Aseguramiento de calidad en ${formatPercent(state.qaLevel)}',
         diagnosis:
             'Recortar calidad libera capacidad hoy, pero cada defecto que se '
-            'escapa a pruebas cuesta cerca de ocho veces mas corregirlo que '
+            'escapa a pruebas cuesta cerca de ocho veces más corregirlo que '
             'haberlo evitado.',
         recommendation:
-            'Si necesitas velocidad, es mas barato sacar alcance que bajar '
+            'Si necesitas velocidad, es más barato sacar alcance que bajar '
             'calidad: el alcance que sacas no vuelve a cobrarse.',
       ));
     }
@@ -576,7 +576,7 @@ class PmAdvisor {
             'capacidad del equipo, y el cronograma ya viene apretado.',
         recommendation:
             'La calidad tiene rendimientos decrecientes. Un nivel alto pero '
-            'no maximo suele ser el punto donde el retrabajo evitado todavia '
+            'no máximo suele ser el punto donde el retrabajo evitado todavía '
             'paga la capacidad invertida.',
       ));
     }
@@ -586,13 +586,13 @@ class PmAdvisor {
         ruleId: 'defects_found',
         area: AdvisorArea.quality,
         severity: AdvisorSeverity.insight,
-        title: 'Las pruebas estan revelando deuda de calidad',
+        title: 'Las pruebas están revelando deuda de calidad',
         diagnosis:
             'Se detectaron ${last.defectsFound.toStringAsFixed(1)} defectos y '
             'entraron ${formatHours(last.reworkHours)} de retrabajo al '
-            'paquete de correccion.',
+            'paquete de corrección.',
         recommendation:
-            'Ese retrabajo no estaba en tu plan pero si en tu proyecto. '
+            'Ese retrabajo no estaba en tu plan pero sí en tu proyecto. '
             'Considera el impacto en la fecha antes de comprometer nada nuevo.',
       ));
     }
@@ -615,12 +615,12 @@ class PmAdvisor {
         severity: AdvisorSeverity.critical,
         title: '${pending.length} solicitud(es) de cambio sin responder',
         diagnosis:
-            '"${pending.first.title}" espera decision desde el periodo '
+            '"${pending.first.title}" espera decisión desde el periodo '
             '${pending.first.period}. Mientras tanto el equipo trabaja sin '
             'saber si ese alcance entra o no.',
         recommendation:
-            'Responde formalmente. No decidir tambien es una decision, y es '
-            'la unica que no puedes defender ante el patrocinador.',
+            'Responde formalmente. No decidir también es una decisión, y es '
+            'la única que no puedes defender ante el patrocinador.',
       ));
     }
 
@@ -633,14 +633,14 @@ class PmAdvisor {
         ruleId: 'scope_creep',
         area: AdvisorArea.scope,
         severity: AdvisorSeverity.warning,
-        title: 'Alcance ampliado sin mover la linea base',
+        title: 'Alcance ampliado sin mover la línea base',
         diagnosis:
             'Aceptaste $silentAccepts cambio(s) sin ajustar plazo ni '
-            'presupuesto. El trabajo entro al proyecto; la promesa quedo '
-            'igual. La diferencia aparecera como atraso tuyo.',
+            'presupuesto. El trabajo entró al proyecto; la promesa quedó '
+            'igual. La diferencia aparecerá como atraso tuyo.',
         recommendation:
-            'Todavia puedes renegociar la linea base con el sustento del '
-            'cambio en la mano. Despues solo tendras excusas.',
+            'Todavía puedes renegociar la línea base con el sustento del '
+            'cambio en la mano. Después solo tendrás excusas.',
       ));
     }
 
@@ -649,16 +649,16 @@ class PmAdvisor {
         ruleId: 'sponsor_low',
         area: AdvisorArea.stakeholder,
         severity: AdvisorSeverity.critical,
-        title: 'El patrocinador perdio confianza',
+        title: 'El patrocinador perdió confianza',
         diagnosis:
-            'La satisfaccion esta en '
+            'La satisfacción está en '
             '${state.sponsorSatisfaction.toStringAsFixed(0)}/100. Por debajo '
-            'de este punto los proyectos se cancelan por razones politicas, '
-            'no tecnicas.',
+            'de este punto los proyectos se cancelan por razones políticas, '
+            'no técnicas.',
         recommendation:
-            'Comunica el estado real con datos (SPI, CPI, proyeccion) y una '
+            'Comunica el estado real con datos (SPI, CPI, proyección) y una '
             'propuesta concreta. La confianza se recupera con transparencia '
-            'temprana, no con buenas noticias tardias.',
+            'temprana, no con buenas noticias tardías.',
       ));
     }
 
@@ -687,10 +687,10 @@ class PmAdvisor {
         severity: AdvisorSeverity.warning,
         title: 'Alcance opcional pendiente en un proyecto atrasado',
         diagnosis:
-            '"${optional.first.name}" es alcance deseable, no critico, y '
-            'todavia consume ${formatHours(hours)} del plan.',
+            '"${optional.first.name}" es alcance deseable, no crítico, y '
+            'todavía consume ${formatHours(hours)} del plan.',
         recommendation:
-            'Sacarlo del alcance comprometido es la palanca mas rapida y mas '
+            'Sacarlo del alcance comprometido es la palanca más rápida y más '
             'barata que tienes. Negociala antes de que la fecha se venza.',
       ));
     }
@@ -699,7 +699,7 @@ class PmAdvisor {
   }
 
   // ------------------------------------------------------------------
-  // Metodologia
+  // Metodología
   // ------------------------------------------------------------------
 
   List<AdvisorMessage> _methodologyFit(ProjectState state, ProjectCase c) {
@@ -711,11 +711,11 @@ class PmAdvisor {
         ruleId: 'fit_predictive_volatile',
         area: AdvisorArea.scope,
         severity: AdvisorSeverity.insight,
-        title: 'Enfoque predictivo sobre requisitos que aun se discuten',
+        title: 'Enfoque predictivo sobre requisitos que aún se discuten',
         diagnosis:
-            'El acta advierte que el alcance no esta cerrado. Con control de '
-            'cambios estricto, cada ajuste obliga a rehacer analisis, diseno '
-            'y documentacion aprobada: el cambio cuesta mas del doble.',
+            'El acta advierte que el alcance no está cerrado. Con control de '
+            'cambios estricto, cada ajuste obliga a rehacer análisis, diseño '
+            'y documentación aprobada: el cambio cuesta más del doble.',
         recommendation:
             'No es un error garrafal, pero exige disciplina: cierra los '
             'requisitos abiertos temprano o preve reserva suficiente para el '
@@ -728,14 +728,14 @@ class PmAdvisor {
         ruleId: 'fit_agile_regulated',
         area: AdvisorArea.quality,
         severity: AdvisorSeverity.insight,
-        title: 'Enfoque agil en un entorno con exigencia documental',
+        title: 'Enfoque ágil en un entorno con exigencia documental',
         diagnosis:
-            'El proyecto sera revisado por una instancia formal. Un enfoque '
-            'agil absorbe bien los cambios, pero produce menos documentacion '
+            'El proyecto será revisado por una instancia formal. Un enfoque '
+            'ágil absorbe bien los cambios, pero produce menos documentación '
             'y eso se cobra en el cierre.',
         recommendation:
             'Si mantienes el enfoque, agrega deliberadamente la evidencia que '
-            'la supervision pedira. La agilidad no exime de trazabilidad.',
+            'la supervisión pedirá. La agilidad no exime de trazabilidad.',
       ));
     }
 
@@ -746,27 +746,27 @@ class PmAdvisor {
         severity: AdvisorSeverity.insight,
         title: 'Agilidad que nadie va a usar',
         diagnosis:
-            'El alcance de este caso esta definido y aprobado. La flexibilidad '
-            'del enfoque agil se paga en coordinacion, y aqui no hay cambios '
+            'El alcance de este caso está definido y aprobado. La flexibilidad '
+            'del enfoque ágil se paga en coordinación, y aquí no hay cambios '
             'que absorber.',
         recommendation:
-            'La metodologia se elige por el problema, no por la moda. Un '
-            'alcance estable premia la planificacion anticipada.',
+            'La metodología se elige por el problema, no por la moda. Un '
+            'alcance estable premia la planificación anticipada.',
       ));
     }
 
     return out;
   }
 
-  /// Explicacion del estado en una linea, para la cabecera del tablero.
+  /// Explicación del estado en una línea, para la cabecera del tablero.
   String headline(ProjectState state) {
     if (state.snapshots.isEmpty) {
-      return 'Sin periodos ejecutados: los indicadores apareceran al cerrar '
+      return 'Sin periodos ejecutados: los indicadores aparecerán al cerrar '
           'el primero.';
     }
     final EvmSnapshot s = state.snapshots.last;
     return '${s.reading}. SPI ${formatIndex(s.spi)}, CPI '
-        '${formatIndex(s.cpi)}, proyeccion '
+        '${formatIndex(s.cpi)}, proyección '
         '${formatMoney(s.estimateAtCompletion)}.';
   }
 }

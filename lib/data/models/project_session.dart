@@ -1,12 +1,12 @@
 import 'period_result.dart';
 import 'project_state.dart';
 
-/// Partida completa: el proyecto, su historia y la semilla que lo genero.
+/// Partida completa: el proyecto, su historia y la semilla que lo generó.
 ///
 /// La semilla se guarda porque es lo que hace comparable el ejercicio: dos
 /// estudiantes con la misma semilla enfrentan exactamente el mismo proyecto,
-/// asi que la diferencia de resultados se explica por como dirigieron y no
-/// por como les fue.
+/// así que la diferencia de resultados se explica por cómo dirigieron y no
+/// por cómo les fue.
 class ProjectSession {
   ProjectSession({
     required this.id,

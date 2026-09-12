@@ -34,7 +34,7 @@ class PackageProgress {
       );
 }
 
-/// Resultado de cerrar un periodo de ejecucion.
+/// Resultado de cerrar un periodo de ejecución.
 class PeriodResult {
   const PeriodResult({
     required this.period,
@@ -60,7 +60,7 @@ class PeriodResult {
   /// Horas efectivamente aplicadas a paquetes habilitados.
   final double appliedHours;
 
-  /// Horas perdidas por asignaciones invalidas o falta de trabajo disponible.
+  /// Horas perdidas por asignaciones inválidas o falta de trabajo disponible.
   final double wastedHours;
 
   final double periodCost;

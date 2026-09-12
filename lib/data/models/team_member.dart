@@ -30,7 +30,7 @@ class TeamRole {
       costPerPeriod: 6200,
       productivity: 1.00,
       rampPeriods: 1,
-      detail: 'Levanta requisitos y traduce el negocio al equipo tecnico.',
+      detail: 'Levanta requisitos y traduce el negocio al equipo técnico.',
     ),
     TeamRole(
       id: 'senior',
@@ -38,7 +38,7 @@ class TeamRole {
       costPerPeriod: 9000,
       productivity: 1.35,
       rampPeriods: 2,
-      detail: 'Alta productividad y criterio tecnico; escaso y caro.',
+      detail: 'Alta productividad y criterio técnico; escaso y caro.',
     ),
     TeamRole(
       id: 'junior',
@@ -62,7 +62,7 @@ class TeamRole {
       costPerPeriod: 10500,
       productivity: 1.45,
       rampPeriods: 2,
-      detail: 'Resuelve lo que nadie mas puede; el perfil mas costoso.',
+      detail: 'Resuelve lo que nadie más puede; el perfil más costoso.',
     ),
   ];
 
@@ -87,13 +87,13 @@ class TeamMember {
   final String roleId;
   final String name;
 
-  /// Periodo en que se incorporo (1 = desde el inicio).
+  /// Periodo en que se incorporó (1 = desde el inicio).
   final int joinedPeriod;
 
   /// Periodos completos que lleva en el equipo.
   int periodsOnTeam;
 
-  /// Paquete al que esta asignado en el periodo en curso.
+  /// Paquete al que está asignado en el periodo en curso.
   String? assignedPackageId;
 
   TeamRole get role => TeamRole.byId(roleId);

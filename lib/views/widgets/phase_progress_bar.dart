@@ -9,8 +9,8 @@ import '../../data/models/project_state.dart';
 
 /// Barra de avance por fase, con la marca del hito que habilita la siguiente.
 ///
-/// La marca es lo importante: ensena que las fases se traslapan y que no hace
-/// falta terminar una para empezar la siguiente, pero si alcanzar un umbral.
+/// La marca es lo importante: enseña que las fases se traslapan y que no hace
+/// falta terminar una para empezar la siguiente, pero sí alcanzar un umbral.
 class PhaseProgressBar extends StatelessWidget {
   const PhaseProgressBar({
     super.key,

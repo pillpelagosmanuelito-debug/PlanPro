@@ -4,10 +4,10 @@ import '../../core/app_theme.dart';
 import '../../core/formatters.dart';
 import '../../data/models/period_result.dart';
 
-/// Resumen de lo que ocurrio al cerrar el periodo.
+/// Resumen de lo que ocurrió al cerrar el periodo.
 ///
-/// Se muestra siempre, incluso cuando no paso nada notable: la disciplina de
-/// revisar el cierre de cada periodo es parte de lo que se esta entrenando.
+/// Se muestra siempre, incluso cuando no pasó nada notable: la disciplina de
+/// revisar el cierre de cada periodo es parte de lo que se está entrenando.
 class PeriodResultSheet extends StatelessWidget {
   const PeriodResultSheet({super.key, required this.result});
 
@@ -72,7 +72,7 @@ class PeriodResultSheet extends StatelessWidget {
                             '(${formatPercent(result.utilization)})',
                         if (result.wastedHours > 0.5)
                           'Perdida: ${formatHours(result.wastedHours)} por '
-                              'asignaciones invalidas o fases bloqueadas',
+                              'asignaciones inválidas o fases bloqueadas',
                         'Costo del periodo: ${formatMoney(result.periodCost)}',
                       ],
                       Icons.groups_outlined,
@@ -133,7 +133,7 @@ class PeriodResultSheet extends StatelessWidget {
                             'CPI: ${formatIndex(result.evm.cpi)}',
                         'Valor ganado: ${formatMoney(result.evm.earnedValue)}',
                         'Costo real: ${formatMoney(result.evm.actualCost)}',
-                        'Proyeccion a la conclusion: '
+                        'Proyección a la conclusión: '
                             '${formatMoney(result.evm.estimateAtCompletion)}',
                       ],
                       Icons.insights,

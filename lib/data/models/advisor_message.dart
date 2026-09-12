@@ -1,4 +1,4 @@
-/// Area de la direccion de proyectos a la que apunta el asistente.
+/// Área de la dirección de proyectos a la que apunta el asistente.
 enum AdvisorArea {
   scope,
   schedule,
@@ -38,11 +38,11 @@ enum AdvisorSeverity {
   String get label {
     switch (this) {
       case AdvisorSeverity.critical:
-        return 'Critico';
+        return 'Crítico';
       case AdvisorSeverity.warning:
-        return 'Atencion';
+        return 'Atención';
       case AdvisorSeverity.insight:
-        return 'Analisis';
+        return 'Análisis';
       case AdvisorSeverity.positive:
         return 'Bien dirigido';
     }
@@ -62,7 +62,7 @@ enum AdvisorSeverity {
   }
 }
 
-/// Mensaje del asistente de direccion de proyectos.
+/// Mensaje del asistente de dirección de proyectos.
 class AdvisorMessage {
   const AdvisorMessage({
     required this.ruleId,

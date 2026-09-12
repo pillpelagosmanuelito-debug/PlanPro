@@ -9,11 +9,11 @@ import '../../viewmodels/project_viewmodel.dart';
 import '../app_scope.dart';
 import '../widgets/section_card.dart';
 
-/// Modulo 1: Inicio del proyecto.
+/// Módulo 1: Inicio del proyecto.
 ///
-/// El acta de constitucion es el unico documento que existe antes de decidir
-/// nada. Aqui el estudiante practica leerla buscando restricciones, supuestos
-/// y seniales de riesgo, no solo el objetivo.
+/// El acta de constitución es el único documento que existe antes de decidir
+/// nada. Aquí el estudiante práctica leerla buscando restricciones, supuestos
+/// y señales de riesgo, no solo el objetivo.
 class CharterScreen extends StatelessWidget {
   const CharterScreen({super.key});
 
@@ -89,8 +89,8 @@ class CharterScreen extends StatelessWidget {
                   label: 'Techo de presupuesto',
                   value: formatMoney(c.budgetCeiling),
                   detail:
-                      'Superarlo en mas de 15% significa cancelacion, no una '
-                      'conversacion.',
+                      'Superarlo en más de 15% significa cancelación, no una '
+                      'conversación.',
                 ),
                 _ConstraintRow(
                   icon: Icons.schedule,
@@ -98,20 +98,20 @@ class CharterScreen extends StatelessWidget {
                   value: '${c.targetPeriods} periodos '
                       '(${c.targetPeriods * 2} semanas)',
                   detail:
-                      'Es la expectativa. Tu comprometeras una fecha en la '
-                      'planificacion, y esa sera la que te midan.',
+                      'Es la expectativa. Tú comprometerás una fecha en la '
+                      'planificación, y esa será la que te midan.',
                 ),
                 _ConstraintRow(
                   icon: Icons.checklist_rtl,
-                  label: 'Alcance minimo',
+                  label: 'Alcance mínimo',
                   value: formatHours(c.mandatoryEstimatedHours),
                   detail:
                       'Los paquetes obligatorios no se pueden excluir. El '
-                      'alcance opcional si, y es tu palanca mas barata.',
+                      'alcance opcional sí, y es tu palanca más barata.',
                 ),
                 _ConstraintRow(
                   icon: Icons.priority_high,
-                  label: 'Restriccion prioritaria',
+                  label: 'Restricción prioritaria',
                   value: state.priority.label,
                   detail: state.priority.detail,
                 ),
@@ -165,8 +165,8 @@ class CharterScreen extends StatelessWidget {
                     )),
                 const NoteBox(
                   text: 'Estos no son todos los riesgos del proyecto: son los '
-                      'que estaban a la vista. Los demas existen igual, y '
-                      'solo apareceran si dedicas tiempo a buscarlos.',
+                      'que estaban a la vista. Los demás existen igual, y '
+                      'solo aparecerán si dedicas tiempo a buscarlos.',
                   icon: Icons.visibility_off_outlined,
                   color: AppColors.warning,
                 ),
@@ -175,7 +175,7 @@ class CharterScreen extends StatelessWidget {
           ),
           if (c.changeHints.isNotEmpty)
             SectionCard(
-              title: 'Temas todavia abiertos',
+              title: 'Temas todavía abiertos',
               subtitle: 'Frases del acta que anticipan solicitudes de cambio',
               icon: Icons.pending_actions,
               accent: AppColors.info,
@@ -274,8 +274,8 @@ class CharterScreen extends StatelessWidget {
                   );
                 }),
                 const NoteBox(
-                  text: 'Estas horas son la estimacion del equipo, no la '
-                      'duracion real. Historicamente las estimaciones son '
+                  text: 'Estas horas son la estimación del equipo, no la '
+                      'duración real. Históricamente las estimaciones son '
                       'optimistas: planifica con eso en mente.',
                   icon: Icons.timer_outlined,
                 ),
@@ -290,7 +290,7 @@ class CharterScreen extends StatelessWidget {
           child: FilledButton.icon(
             onPressed: vm.goToPlanning,
             icon: const Icon(Icons.arrow_forward),
-            label: const Text('Pasar a planificacion'),
+            label: const Text('Pasar a planificación'),
           ),
         ),
       ),
@@ -303,7 +303,7 @@ class CharterScreen extends StatelessWidget {
       builder: (BuildContext ctx) => AlertDialog(
         title: const Text('Abandonar el proyecto'),
         content: const Text(
-          'Se perdera la partida actual. Podras empezar otra desde el inicio.',
+          'Se perderá la partida actual. Podrás empezar otra desde el inicio.',
         ),
         actions: <Widget>[
           TextButton(

@@ -53,7 +53,7 @@ class _ProjectManagementSimulatorAppState
   }
 }
 
-/// Decide que pantalla corresponde a la etapa actual de la partida.
+/// Decide qué pantalla corresponde a la etapa actual de la partida.
 class RootScreen extends StatelessWidget {
   const RootScreen({super.key});
 

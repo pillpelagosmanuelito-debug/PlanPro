@@ -10,12 +10,12 @@ import '../widgets/evm_chart.dart';
 import '../widgets/metric_tile.dart';
 import '../widgets/section_card.dart';
 
-/// Modulo 5: Cierre.
+/// Módulo 5: Cierre.
 ///
 /// El informe compara lo prometido con lo entregado y califica cuatro
-/// competencias con evidencia de la propia partida. La seccion de brechas de
-/// estimacion revela por fin las duraciones reales: es el momento en que el
-/// estudiante ve cuanto se equivoco su plan y por que.
+/// competencias con evidencia de la propia partida. La sección de brechas de
+/// estimación revela por fin las duraciones reales: es el momento en que el
+/// estudiante ve cuánto se equivocó su plan y por qué.
 class ClosureScreen extends StatelessWidget {
   const ClosureScreen({super.key});
 
@@ -94,7 +94,7 @@ class ClosureScreen extends StatelessWidget {
                         label: 'Patrocinador',
                         value: '${report.sponsorSatisfaction.toStringAsFixed(0)}'
                             '/100',
-                        hint: 'satisfaccion final',
+                        hint: 'satisfacción final',
                         color: report.sponsorSatisfaction >= 55
                             ? AppColors.success
                             : AppColors.danger,
@@ -115,8 +115,8 @@ class ClosureScreen extends StatelessWidget {
                 if (report.complianceIssue) ...<Widget>[
                   const SizedBox(height: 12),
                   const NoteBox(
-                    text: 'Cierre con observaciones: el entorno exigia '
-                        'documentacion formal y el enfoque elegido produjo '
+                    text: 'Cierre con observaciones: el entorno exigía '
+                        'documentación formal y el enfoque elegido produjo '
                         'menos evidencia de la requerida.',
                     icon: Icons.gavel_outlined,
                     color: AppColors.danger,
@@ -126,7 +126,7 @@ class ClosureScreen extends StatelessWidget {
             ),
           ),
           SectionCard(
-            title: 'Evaluacion por competencias',
+            title: 'Evaluación por competencias',
             subtitle: 'Puntaje general ${report.overallScore.toStringAsFixed(0)}/100',
             icon: Icons.school_outlined,
             accent: AppColors.initiation,
@@ -145,8 +145,8 @@ class ClosureScreen extends StatelessWidget {
             child: EvmChart(snapshots: state.snapshots),
           ),
           SectionCard(
-            title: 'Estimacion contra realidad',
-            subtitle: 'Ahora si: cuanto duraba realmente cada paquete',
+            title: 'Estimación contra realidad',
+            subtitle: 'Ahora sí: cuánto duraba realmente cada paquete',
             icon: Icons.timer_outlined,
             accent: AppColors.warning,
             child: Column(
@@ -158,9 +158,9 @@ class ClosureScreen extends StatelessWidget {
                 const SizedBox(height: 6),
                 const NoteBox(
                   text: 'Esta tabla no estaba disponible durante la partida, '
-                      'igual que en un proyecto real. La leccion no es que las '
+                      'igual que en un proyecto real. La lección no es que las '
                       'estimaciones fallen: es que fallan siempre en la misma '
-                      'direccion, y planificar sabiendolo es gratis.',
+                      'dirección, y planificar sabiéndolo es gratis.',
                   icon: Icons.trending_up,
                   color: AppColors.warning,
                 ),
@@ -168,7 +168,7 @@ class ClosureScreen extends StatelessWidget {
             ),
           ),
           SectionCard(
-            title: 'Gestion de riesgos',
+            title: 'Gestión de riesgos',
             subtitle: '${report.risksIdentified} de ${report.risksTotal} '
                 'identificados · ${report.risksMaterialized} ocurrieron',
             icon: Icons.shield_outlined,
@@ -199,7 +199,7 @@ class ClosureScreen extends StatelessWidget {
             ),
           ),
           SectionCard(
-            title: 'Que practicar despues',
+            title: 'Qué practicar después',
             icon: Icons.flag_circle_outlined,
             accent: AppColors.execution,
             child: Column(
@@ -512,7 +512,7 @@ class _GapRow extends StatelessWidget {
           Text(
             'Estimado ${formatHours(gap.estimatedHours)} · '
             'real ${formatHours(gap.realHours)}'
-            '${gap.completed ? '' : ' · quedo inconcluso'}',
+            '${gap.completed ? '' : ' · quedó inconcluso'}',
             style: const TextStyle(fontSize: 11, color: AppColors.textSoft),
           ),
         ],

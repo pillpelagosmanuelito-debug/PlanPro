@@ -8,30 +8,30 @@ enum PmCompetency {
   String get label {
     switch (this) {
       case PmCompetency.planning:
-        return 'Planificacion';
+        return 'Planificación';
       case PmCompetency.resources:
-        return 'Gestion de recursos';
+        return 'Gestión de recursos';
       case PmCompetency.risk:
-        return 'Gestion de riesgos';
+        return 'Gestión de riesgos';
       case PmCompetency.time:
-        return 'Gestion del tiempo';
+        return 'Gestión del tiempo';
     }
   }
 
   String get definition {
     switch (this) {
       case PmCompetency.planning:
-        return 'Comprometer una linea base realista, con alcance, plazo, '
-            'equipo y reserva coherentes entre si.';
+        return 'Comprometer una línea base realista, con alcance, plazo, '
+            'equipo y reserva coherentes entre sí.';
       case PmCompetency.resources:
         return 'Asignar el equipo al trabajo correcto, sin capacidad ociosa '
-            'ni incorporaciones que cuesten mas de lo que aportan.';
+            'ni incorporaciones que cuesten más de lo que aportan.';
       case PmCompetency.risk:
-        return 'Identificar riesgos antes de que ocurran y responder segun su '
-            'exposicion, no segun la urgencia del dia.';
+        return 'Identificar riesgos antes de que ocurran y responder según su '
+            'exposición, no según la urgencia del día.';
       case PmCompetency.time:
-        return 'Sostener el cronograma: leer los indices a tiempo y corregir '
-            'donde esta el cuello de botella.';
+        return 'Sostener el cronograma: leer los índices a tiempo y corregir '
+            'donde está el cuello de botella.';
     }
   }
 }
@@ -58,7 +58,7 @@ class CompetencyScore {
   }
 }
 
-/// Contraste entre lo estimado y lo que realmente costo.
+/// Contraste entre lo estimado y lo que realmente costó.
 class EstimateGap {
   const EstimateGap({
     required this.packageName,
@@ -118,7 +118,7 @@ class EvaluationReport {
   final double budgetAtCompletion;
   final double budgetCeiling;
 
-  /// Fraccion del alcance comprometido efectivamente entregada.
+  /// Fracción del alcance comprometido efectivamente entregada.
   final double scopeDelivered;
 
   final double escapedDefects;
@@ -134,10 +134,10 @@ class EvaluationReport {
   final double finalCpi;
   final double finalSpi;
 
-  /// Horas de equipo perdidas por mala asignacion o bloqueo de fases.
+  /// Horas de equipo perdidas por mala asignación o bloqueo de fases.
   final double wastedHours;
 
-  /// Si el cierre tuvo observaciones por documentacion insuficiente.
+  /// Si el cierre tuvo observaciones por documentación insuficiente.
   final bool complianceIssue;
 
   double get scheduleVariancePeriods =>

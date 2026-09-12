@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_theme.dart';
 
-/// Tarjeta con titulo, subtitulo opcional y contenido.
+/// Tarjeta con título, subtítulo opcional y contenido.
 ///
-/// Unifica el ritmo visual de toda la aplicacion en un solo lugar.
+/// Unifica el ritmo visual de toda la aplicación en un solo lugar.
 class SectionCard extends StatelessWidget {
   const SectionCard({
     super.key,

@@ -14,9 +14,9 @@ import '../widgets/section_card.dart';
 
 /// Tablero de control del proyecto.
 ///
-/// Reune los tres numeros del valor ganado, la lectura en lenguaje llano y el
+/// Reune los tres números del valor ganado, la lectura en lenguaje llano y el
 /// estado de cada fase. La idea es que el estudiante aprenda a mirar primero
-/// los indices y despues los detalles.
+/// los índices y después los detalles.
 class DashboardTab extends StatelessWidget {
   const DashboardTab({super.key});
 
@@ -71,7 +71,7 @@ class DashboardTab extends StatelessWidget {
                       label: 'Patrocinador',
                       value: '${state.sponsorSatisfaction.toStringAsFixed(0)}'
                           '/100',
-                      hint: 'satisfaccion',
+                      hint: 'satisfacción',
                       color: state.sponsorSatisfaction < 45
                           ? AppColors.danger
                           : AppColors.info,
@@ -117,7 +117,7 @@ class DashboardTab extends StatelessWidget {
           ),
         ),
         SectionCard(
-          title: 'Gestion del valor ganado',
+          title: 'Gestión del valor ganado',
           subtitle: snap == null
               ? 'Se calcula al cerrar el primer periodo'
               : snap.reading,
@@ -136,7 +136,7 @@ class DashboardTab extends StatelessWidget {
                 _EvmRow(
                   label: 'Valor planificado (PV)',
                   value: formatMoney(snap.plannedValue),
-                  help: 'Lo que el plan decia que deberia estar ejecutado hoy.',
+                  help: 'Lo que el plan decía que debería estar ejecutado hoy.',
                 ),
                 _EvmRow(
                   label: 'Valor ganado (EV)',
@@ -150,17 +150,17 @@ class DashboardTab extends StatelessWidget {
                 ),
                 const Divider(height: 20),
                 _EvmRow(
-                  label: 'Estimacion a la conclusion (EAC)',
+                  label: 'Estimación a la conclusión (EAC)',
                   value: formatMoney(snap.estimateAtCompletion),
-                  help: 'Cuanto costara terminar si el desempenio se mantiene.',
+                  help: 'Cuánto costará terminar si el desempeño se mantiene.',
                   strong: true,
                 ),
                 _EvmRow(
-                  label: 'Variacion a la conclusion (VAC)',
+                  label: 'Variación a la conclusión (VAC)',
                   value: formatMoney(snap.varianceAtCompletion),
                   help: snap.varianceAtCompletion >= 0
-                      ? 'Terminarias por debajo del presupuesto.'
-                      : 'Terminarias por encima del presupuesto.',
+                      ? 'Terminarías por debajo del presupuesto.'
+                      : 'Terminarías por encima del presupuesto.',
                   color: snap.varianceAtCompletion >= 0
                       ? AppColors.success
                       : AppColors.danger,
@@ -182,8 +182,8 @@ class DashboardTab extends StatelessWidget {
           ),
         ),
         SectionCard(
-          title: 'Linea base comprometida',
-          subtitle: 'Contra esto te mediran al cerrar',
+          title: 'Línea base comprometida',
+          subtitle: 'Contra esto te medirán al cerrar',
           icon: Icons.flag_outlined,
           accent: AppColors.closure,
           child: Column(
@@ -203,9 +203,9 @@ class DashboardTab extends StatelessWidget {
                 value: formatHours(state.scopeEstimatedHours),
                 help: state.baseline != null &&
                         state.baseline!.revisions > 0
-                    ? 'Linea base revisada formalmente '
+                    ? 'Línea base revisada formalmente '
                         '${state.baseline!.revisions} vez(ces).'
-                    : 'Sin revisiones formales de la linea base.',
+                    : 'Sin revisiones formales de la línea base.',
               ),
             ],
           ),

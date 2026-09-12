@@ -12,11 +12,11 @@ import '../models/work_package.dart';
 import 'evm_calculator.dart';
 import 'risk_engine.dart';
 
-/// Motor de ejecucion: convierte las decisiones del periodo en resultados.
+/// Motor de ejecución: convierte las decisiones del periodo en resultados.
 ///
-/// Toda la fisica del simulador vive aqui y en [RiskEngine]. La regla que
-/// gobierna el diseno es que ninguna decision sea gratis: sumar gente cuesta
-/// comunicacion y curva de aprendizaje, recortar calidad cuesta retrabajo,
+/// Toda la física del simulador vive aquí y en [RiskEngine]. La regla que
+/// gobierna el diseño es que ninguna decisión sea gratis: sumar gente cuesta
+/// comunicación y curva de aprendizaje, recortar calidad cuesta retrabajo,
 /// autorizar horas extra cuesta dinero y fatiga, y no asignar a alguien cuesta
 /// la capacidad completa de esa persona.
 class ExecutionEngine {
@@ -30,10 +30,10 @@ class ExecutionEngine {
 
   RiskEngine get _risk => RiskEngine(config: config);
 
-  /// Ejecuta un periodo completo y devuelve lo que ocurrio.
+  /// Ejecuta un periodo completo y devuelve lo que ocurrió.
   ///
   /// Muta [state]: al terminar, [ProjectState.period] apunta al siguiente
-  /// periodo y [ProjectState.outcome] refleja si el proyecto termino.
+  /// periodo y [ProjectState.outcome] refleja si el proyecto terminó.
   PeriodResult runPeriod({
     required ProjectState state,
     required bool overtime,
@@ -49,14 +49,14 @@ class ExecutionEngine {
     }
     final double teamMultiplier = rawSum <= 0 ? 0.0 : capacity / rawSum;
 
-    // 2. Deteccion de defectos -------------------------------------------
+    // 2. Detección de defectos -------------------------------------------
     //
-    // Se resuelve ANTES de aplicar el trabajo del periodo, y no despues: si el
-    // retrabajo apareciera al final, reabriria el paquete de correccion ya
-    // terminado y el equipo tendria que esperar al periodo siguiente para
+    // Se resuelve ANTES de aplicar el trabajo del periodo, y no después: si el
+    // retrabajo apareciera al final, reabriría el paquete de corrección ya
+    // terminado y el equipo tendría que esperar al periodo siguiente para
     // atacarlo. Detectar primero permite que la capacidad del periodo lo
     // absorba, que es lo que ocurre en un proyecto real cuando pruebas y
-    // correccion conviven en la misma iteracion.
+    // corrección conviven en la misma iteración.
     double defectsFound = 0;
     double reworkHours = 0;
     final double testProgress = state.phaseProgress(ProjectPhase.test);
@@ -73,13 +73,13 @@ class ExecutionEngine {
       }
     }
     if (state.latentDefects > 0 && state.latentDefects < config.escapeFloor) {
-      // Lo que queda es demasiado poco para que una campania de pruebas lo
+      // Lo que queda es demasiado poco para que una campaña de pruebas lo
       // encuentre: llega al cliente.
       state.escapedDefects += state.latentDefects;
       state.latentDefects = 0;
     }
 
-    // 3. Aplicacion del trabajo ------------------------------------------
+    // 3. Aplicación del trabajo ------------------------------------------
     final Set<String> preDone = <String>{
       for (final WorkPackage p in state.packages)
         if (p.isDone) p.id,
@@ -125,14 +125,14 @@ class ExecutionEngine {
     final List<ChangeRequest> nuevos = _spawnChanges(state, period);
     state.changes.addAll(nuevos);
 
-    // Dejar una solicitud sin responder desgasta la relacion: el silencio
-    // tambien es una decision, y la peor de todas.
+    // Dejar una solicitud sin responder desgasta la relación: el silencio
+    // también es una decisión, y la peor de todas.
     final int stillPending = state.pendingChanges
         .where((ChangeRequest c) => c.period < period)
         .length;
     state.sponsorSatisfaction -= 2.0 * stillPending;
 
-    // 8. Antiguedad del equipo --------------------------------------------
+    // 8. Antigüedad del equipo --------------------------------------------
     for (final TeamMember m in state.team) {
       m.periodsOnTeam++;
     }
@@ -179,20 +179,20 @@ class ExecutionEngine {
   }
 
   // --------------------------------------------------------------------
-  // Aplicacion de horas
+  // Aplicación de horas
   // --------------------------------------------------------------------
 
   /// Aplica [hours] al paquete indicado y devuelve las horas perdidas.
   ///
   /// Se distinguen dos situaciones que parecen iguales y no lo son:
   ///
-  /// - La asignacion es invalida por decision del estudiante (nadie asignado,
-  ///   paquete fuera del alcance, fase todavia bloqueada, o un paquete que ya
-  ///   estaba terminado al empezar el periodo). Ahi las horas se pierden: la
-  ///   aplicacion avisa antes de cerrar y aun asi se cerro.
-  /// - El paquete lo termino otro integrante durante este mismo periodo. Eso
-  ///   no es un error de direccion sino el curso normal del trabajo en
-  ///   paralelo, asi que la persona se reasigna sola a otro paquete
+  /// - La asignación es inválida por decisión del estudiante (nadie asignado,
+  ///   paquete fuera del alcance, fase todavía bloqueada, o un paquete que ya
+  ///   estaba terminado al empezar el periodo). Ahí las horas se pierden: la
+  ///   aplicación avisa antes de cerrar y aun así se cerró.
+  /// - El paquete lo terminó otro integrante durante este mismo periodo. Eso
+  ///   no es un error de dirección sino el curso normal del trabajo en
+  ///   paralelo, así que la persona se reasigna sola a otro paquete
   ///   habilitado, empezando por los de su propia fase.
   double _applyHours({
     required ProjectState state,
@@ -261,12 +261,12 @@ class ExecutionEngine {
   /// Defectos que deja un paquete al terminarse.
   ///
   /// Es la regla del 1-10-100 en dos tramos. El aseguramiento reduce cuantos
-  /// defectos se generan, pero nunca hasta cero: al maximo nivel sigue
+  /// defectos se generan, pero nunca hasta cero: al máximo nivel sigue
   /// quedando un 30%. Y de los que se generan, una parte escapa directamente
   /// al cliente sin pasar por pruebas, tanto mayor cuanto menor sea el
   /// control. Por eso recortar calidad no ahorra trabajo: cambia trabajo
   /// barato de hoy por retrabajo caro en pruebas y por defectos que nadie
-  /// vera hasta que el sistema este en produccion.
+  /// verá hasta que el sistema esté en producción.
   void _generateDefects(ProjectState state, WorkPackage pkg) {
     if (pkg.phase == ProjectPhase.test) return;
     final double created = pkg.estimatedHours *
@@ -297,7 +297,7 @@ class ExecutionEngine {
 
   /// Genera las solicitudes de cambio del periodo.
   ///
-  /// No son aleatorias: el acta de constitucion ya avisaba que estos temas
+  /// No son aleatorias: el acta de constitución ya avisaba que estos temas
   /// estaban abiertos. Un director atento reserva contingencia para ellas.
   List<ChangeRequest> _spawnChanges(ProjectState state, int period) {
     if (state.stage != ProjectStage.execution) return <ChangeRequest>[];
@@ -331,11 +331,11 @@ class ExecutionEngine {
         return const <_ChangeTemplate>[
           _ChangeTemplate(
             title: 'Tablero de control adicional en la sala de bombas',
-            requestedBy: 'Area usuaria de operaciones',
+            requestedBy: 'Área usuaria de operaciones',
             description:
                 'Operaciones pide un tablero de control adicional para la '
-                'sala de bombas. No estaba en el expediente tecnico, pero el '
-                'area sostiene que sin el no podra operar la ampliacion.',
+                'sala de bombas. No estaba en el expediente técnico, pero el '
+                'área sostiene que sin él no podrá operar la ampliación.',
             baseHours: 90,
             targets: <String>['c2', 'c4'],
           ),
@@ -343,22 +343,22 @@ class ExecutionEngine {
       case 'cobranzas':
         return const <_ChangeTemplate>[
           _ChangeTemplate(
-            title: 'Nueva segmentacion de clientes',
+            title: 'Nueva segmentación de clientes',
             requestedBy: 'Gerencia comercial',
             description:
-                'Comercial cerro su estrategia de contacto y ahora pide seis '
+                'Comercial cerró su estrategia de contacto y ahora pide seis '
                 'segmentos en lugar de dos, con reglas distintas de '
-                'asignacion de cartera para cada uno.',
+                'asignación de cartera para cada uno.',
             baseHours: 90,
             targets: <String>['c1'],
           ),
           _ChangeTemplate(
             title: 'Registro reforzado de consentimiento',
-            requestedBy: 'Oficialia de cumplimiento',
+            requestedBy: 'Oficialía de cumplimiento',
             description:
-                'Cumplimiento precisa que cada gestion debe guardar evidencia '
-                'del consentimiento del cliente y permitir su revocacion en '
-                'linea. Es exigible por el regulador.',
+                'Cumplimiento precisa que cada gestión debe guardar evidencia '
+                'del consentimiento del cliente y permitir su revocación en '
+                'línea. Es exigible por el regulador.',
             baseHours: 95,
             targets: <String>['c4'],
           ),
@@ -371,16 +371,16 @@ class ExecutionEngine {
             description:
                 'Las escuelas acordaron el proceso de convalidaciones y cada '
                 'una quiere sus propias reglas de equivalencia, con '
-                'aprobacion del director de escuela.',
+                'aprobación del director de escuela.',
             baseHours: 90,
             targets: <String>['c1'],
           ),
           _ChangeTemplate(
-            title: 'Conciliacion de pagos en linea',
-            requestedBy: 'Tesoreria',
+            title: 'Conciliación de pagos en línea',
+            requestedBy: 'Tesorería',
             description:
-                'Tesoreria pide que la conciliacion bancaria sea en linea y '
-                'no nocturna, para liberar la matricula del estudiante en el '
+                'Tesorería pide que la conciliación bancaria sea en línea y '
+                'no nocturna, para liberar la matrícula del estudiante en el '
                 'momento del pago.',
             baseHours: 95,
             targets: <String>['c2'],
@@ -389,10 +389,10 @@ class ExecutionEngine {
     }
   }
 
-  /// Aplica la decision del director sobre una solicitud de cambio.
+  /// Aplica la decisión del director sobre una solicitud de cambio.
   ///
   /// Cada camino tiene un costo distinto y ninguno es gratis: aceptar sin
-  /// mover la linea base es lo que mas gusta al patrocinador y lo que peor
+  /// mover la línea base es lo que más gusta al patrocinador y lo que peor
   /// termina, porque el trabajo entra igual pero la promesa no cambia.
   void applyChangeDecision({
     required ProjectState state,
@@ -422,7 +422,7 @@ class ExecutionEngine {
       final Baseline? current = state.baseline;
       if (current != null) {
         // Renegociar es un acto formal: se reconoce el trabajo nuevo en el
-        // presupuesto y se registra la revision.
+        // presupuesto y se registra la revisión.
         state.baseline = current.copyWith(
           plannedCost: current.plannedCost +
               change.baseHours * state.hourValue(config),

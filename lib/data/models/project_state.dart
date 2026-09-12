@@ -22,9 +22,9 @@ enum ProjectStage {
       case ProjectStage.initiation:
         return 'Inicio';
       case ProjectStage.planning:
-        return 'Planificacion';
+        return 'Planificación';
       case ProjectStage.execution:
-        return 'Ejecucion';
+        return 'Ejecución';
       case ProjectStage.closure:
         return 'Cierre';
     }
@@ -47,7 +47,7 @@ enum ProjectOutcome {
   String get label {
     switch (this) {
       case ProjectOutcome.running:
-        return 'En ejecucion';
+        return 'En ejecución';
       case ProjectOutcome.delivered:
         return 'Entregado';
       case ProjectOutcome.deliveredLate:
@@ -99,7 +99,7 @@ class ProjectState {
 
   ProjectStage stage;
 
-  /// Periodo en curso (1 = primera quincena de ejecucion).
+  /// Periodo en curso (1 = primera quincena de ejecución).
   int period;
 
   Methodology methodology;
@@ -121,13 +121,13 @@ class ProjectState {
   /// Costo real acumulado.
   double actualCost;
 
-  /// Satisfaccion del patrocinador (0-100).
+  /// Satisfacción del patrocinador (0-100).
   double sponsorSatisfaction;
 
   /// Fatiga acumulada por horas extra (0-1).
   double fatigue;
 
-  /// Defectos aun no detectados.
+  /// Defectos aún no detectados.
   double latentDefects;
 
   /// Defectos que llegaron al cliente.
@@ -136,7 +136,7 @@ class ProjectState {
   /// Reserva de contingencia consumida.
   double reserveUsed;
 
-  /// Talleres de identificacion de riesgos realizados.
+  /// Talleres de identificación de riesgos realizados.
   int riskWorkshops;
 
   ProjectOutcome outcome;
@@ -167,7 +167,7 @@ class ProjectState {
     return total;
   }
 
-  /// Avance fisico del alcance comprometido (0-1).
+  /// Avance físico del alcance comprometido (0-1).
   double get progress {
     final double scope = scopeEstimatedHours;
     return scope <= 0 ? 0.0 : (earnedHours / scope).clamp(0.0, 1.0).toDouble();
@@ -209,7 +209,7 @@ class ProjectState {
     return math.max(0, capacity);
   }
 
-  /// Paquetes habilitados para trabajar segun las dependencias de fase.
+  /// Paquetes habilitados para trabajar según las dependencias de fase.
   List<WorkPackage> availablePackages() {
     final List<WorkPackage> out = <WorkPackage>[];
     for (final ProjectPhase phase in ProjectPhase.values) {
@@ -220,7 +220,7 @@ class ProjectState {
     return out;
   }
 
-  /// Si una fase esta habilitada por el avance de las anteriores.
+  /// Si una fase está habilitada por el avance de las anteriores.
   bool phaseUnlocked(ProjectPhase phase) {
     final List<WorkPackage> previous = includedPackages
         .where((WorkPackage p) => p.phase.order < phase.order)
@@ -255,7 +255,7 @@ class ProjectState {
   List<RiskItem> get identifiedRisks =>
       risks.where((RiskItem r) => r.identified).toList();
 
-  /// Exposicion total al riesgo, monetizada.
+  /// Exposición total al riesgo, monetizada.
   double riskExposure(double hourValue) {
     double total = 0;
     for (final RiskItem r in identifiedRisks) {

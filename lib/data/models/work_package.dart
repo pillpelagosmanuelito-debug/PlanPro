@@ -1,8 +1,8 @@
 import 'project_case.dart';
 
-/// Paquete de trabajo en ejecucion.
+/// Paquete de trabajo en ejecución.
 ///
-/// El estudiante ve [estimatedHours]; [realHours] es la duracion verdadera y
+/// El estudiante ve [estimatedHours]; [realHours] es la duración verdadera y
 /// permanece oculta: se descubre trabajando, igual que en un proyecto real.
 class WorkPackage {
   WorkPackage({
@@ -24,7 +24,7 @@ class WorkPackage {
   final String name;
   final ProjectPhase phase;
 
-  /// Horas que el equipo estimo al planificar.
+  /// Horas que el equipo estimó al planificar.
   final double estimatedHours;
 
   /// Horas reales necesarias (oculta durante la partida).
@@ -48,18 +48,18 @@ class WorkPackage {
 
   bool get isDone => workedHours >= realHours - 1e-6;
 
-  /// Avance fisico real (0-1).
+  /// Avance físico real (0-1).
   double get progress =>
       realHours <= 0 ? 1.0 : (workedHours / realHours).clamp(0.0, 1.0).toDouble();
 
-  /// Horas que faltan segun la duracion real.
+  /// Horas que faltan según la duración real.
   double get remainingHours =>
       (realHours - workedHours) < 0 ? 0.0 : realHours - workedHours;
 
-  /// Avance que el equipo reporta, expresado sobre la estimacion original.
+  /// Avance que el equipo reporta, expresado sobre la estimación original.
   ///
-  /// Es el numero con el que se calcula el valor ganado: por eso un paquete
-  /// puede estar "al 100% de lo estimado" y aun asi no estar terminado.
+  /// Es el número con el que se calcula el valor ganado: por eso un paquete
+  /// puede estar "al 100% de lo estimado" y aun así no estar terminado.
   double get earnedHours => progress * estimatedHours;
 
   factory WorkPackage.fromSpec(PackageSpec spec, double realHours) =>
